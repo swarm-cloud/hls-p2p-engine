@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>easyplayer</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta
+            content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"
+            name="viewport"
+    />
+    <script type="text/javascript" src="./easyplayer.js"></script>
+<!--    <script src="https://cdn.jsdelivr.net/npm/swarmcloud-hls@latest"></script>-->
+    <script src="../../dist/p2p-engine.min.js"></script>
+</head>
+<body>
+<easy-player
+        video-url="https://wowza.peer5.com/live/smil:bbb_abr.smil/chunklist_b591000.m3u8"
+        live="false"
+        stretch="true"
+></easy-player>
+</body>
+</html>
+<script>
+    // https://github.com/tsingsee/EasyPlayer.js
+    var engine = new P2PEngineHls({
+        videoElem: '#vjs_video_3_html5_api',
+        // announceLocation: 'hk',        // if using Hongkong tracker
+        // announceLocation: 'us',        // if using USA tracker
+    })
+</script>

@@ -1,0 +1,33 @@
+{
+  "name": "swarmcloud-hls",
+  "version": "2.0.0",
+  "description": "Let your viewers become your unlimitedly scalable CDN.",
+  "main": "./p2p-engine.min.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "git-push": "git add demo && git add package.json && git add README.md && git add Readme_zh.md && git commit -m 'release v2.0.0' && git push -u origin main",
+    "git-pull": "git pull origin master"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/swarm-cloud/hls-p2p-engine.git"
+  },
+  "author": "swarmcloud",
+  "license": "MIT",
+  "keywords": [
+    "html5",
+    "WebRTC",
+    "video",
+    "ios",
+    "p2p",
+    "peer-to-peer",
+    "hls",
+    "hls.js",
+    "cdnbye",
+    "bittorrent",
+    "webrtc data channel",
+    "http live streaming"
+  ]
+}

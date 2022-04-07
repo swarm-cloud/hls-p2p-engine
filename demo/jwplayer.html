@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>CDNBye JWPlayer Demo</title>
+    <!-- CDNBye Plugin -->
+    <script src="../dist/hls.min.js"></script>
+    <script src="//cdn.jsdelivr.net/gh/teranode/jw-provider@0.0.9/provider.hlsjs.js"></script>
+<!--    <script src="//cdn.jsdelivr.net/npm/cdnbye@latest/dist/jwplayer.provider.hls.js"></script>-->
+    <!-- JW Player Builds -->
+    <script src="//ssl.p.jwpcdn.com/player/v/8.22.0/jwplayer.js"></script>
+
+</head>
+
+<body>
+<header></header>
+<center>
+    <div id="demoplayer"></div>
+</center>
+<script>
+    var p2pConfig = {
+        logLevel: 'debug',
+        live: true,        // set to false in VOD mode
+        // Other p2pConfig options provided by CDNBye
+    }
+    if (!Hls.P2pEngine.isMSESupported() || Hls.P2pEngine.getBrowser() === 'Mac-Safari') {
+        // use ServiceWorker based p2p engine
+        new Hls.P2pEngine(p2pConfig)
+    }
+    jwplayer.key = "uoW6qHjBL3KNudxKVnwa3rt5LlTakbko9e6aQ6VUyKQ=";
+    jwplayer('demoplayer').setup({
+        file: 'https://wowza.peer5.com/live/smil:bbb_abr.smil/chunklist_b591000.m3u8',
+        width: 512,
+        height: 288,
+        autostart: true,
+        hlsjsdefault: true,
+        hlsjsConfig: {
+            // debug: true,
+            // Other hlsjsConfig options provided by hls.js
+            p2pConfig
+        },
+    });
+
+</script>
+</body>
+
+</html>

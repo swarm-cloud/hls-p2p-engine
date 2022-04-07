@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,minimal-ui">
+    <meta name="referrer" content="no-referrer">
+    <title>CDNBye XGPlayer Demo</title>
+    <style type="text/css">
+        html, body {width:100%;height:100%;margin:auto;overflow: hidden;}
+        body {display:flex;}
+        #mse {flex:auto;}
+    </style>
+    <script type="text/javascript">
+        window.addEventListener('resize',function(){document.getElementById('mse').style.height=window.innerHeight+'px';});
+    </script>
+</head>
+<body>
+<div id="mse"></div>
+<script src="//cdn.jsdelivr.net/npm/xgplayer@2.30.2/browser/index.js" charset="utf-8"></script>
+<script src="../dist/hls.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/cdnbye@latest/dist/xgplayer-hlsjs.min.js"></script>
+<script type="text/javascript">
+    new window.HlsJsPlayer({
+        id: 'mse',
+        url: 'https://test-streams.mux.dev/x36xhzz/url_2/193039199_mp4_h264_aac_ld_7.m3u8',
+        autoplay: true,
+        useHls: true,
+        playsinline: true,
+        height: window.innerHeight,
+        width: window.innerWidth,
+        hlsOpts: {
+            debug: false,
+            // Other hlsjsConfig options provided by hls.js
+            p2pConfig: {
+                logLevel: 'debug',
+                live: true,        // set to false in VOD mode
+                getStats: function (totalP2PDownloaded, totalP2PUploaded, totalHTTPDownloaded) {
+                    console.log(`totalP2PDownloaded ${totalP2PDownloaded} totalP2PUploaded ${totalP2PUploaded} totalHTTPDownloaded ${totalHTTPDownloaded}`)
+                },
+                // Other p2pConfig options provided by CDNBye
+            }
+        }
+    });
+</script>
+</body>
+</html>

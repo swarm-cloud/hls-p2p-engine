@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset=utf-8 />
+    <title>demo for vhs</title>
+    <link href="https://unpkg.com/video.js/dist/video-js.css" rel="stylesheet">
+</head>
+<body>
+
+<video-js id="my_video_1" class="vjs-default-skin" controls preload="auto" width="640" height="268">
+    <source src="https://video.cdnbye.com/0cf6732evodtransgzp1257070836/e0d4b12e5285890803440736872/v.f100220.m3u8" type="application/x-mpegURL">
+</video-js>
+
+<script src="https://unpkg.com/video.js/dist/video.js"></script>
+<script src="https://unpkg.com/@videojs/http-streaming/dist/videojs-http-streaming.js"></script>
+<!-- p2p-plugin -->
+<script src="../dist/p2p-engine.min.js"></script>
+<script>
+    // this demo shows how this SDK works with videojs and videojs-http-streaming
+
+    var player = videojs('my_video_1');
+
+    var engine = new P2PEngineHls({
+        // logLevel: 'debug',
+        // announceLocation: 'hk',        // if using Hongkong tracker
+        // announceLocation: 'us',        // if using USA tracker
+    })
+
+</script>
+
+</body>
+</html>

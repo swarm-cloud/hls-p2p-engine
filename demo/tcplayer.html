@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no">
+    <title>CDNBye TCPlayer Demo</title>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="msapplication-tap-highlight" content="no">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+<div id="video-container" style="margin: 0px auto;">
+</div>
+<p id="version"></p>
+<h3>download info:</h3>
+<p id="info"></p>
+<script src="../dist/hls.min.js"></script>
+<script src="//imgcache.qq.com/open/qcloud/video/vcplayer/TcPlayer-2.2.3.js"></script>
+<script>
+    var p2pConfig = {
+        logLevel: 'debug',
+        live: true,        // set to false in VOD mode
+        getStats: function (totalP2PDownloaded, totalP2PUploaded, totalHTTPDownloaded) {
+            var total = totalHTTPDownloaded + totalP2PDownloaded;
+            document.querySelector('#info').innerText = `p2p ratio: ${Math.round(totalP2PDownloaded/total*100)}%, saved traffic: ${totalP2PDownloaded}KB, uploaded: ${totalP2PUploaded}KB`;
+        },
+        // Other p2pConfig options provided by CDNBye
+    }
+    document.querySelector('#version').innerText = `hls.js version: ${Hls.version}  cdnbye version: ${Hls.engineVersion}`;
+    if (!Hls.P2pEngine.isMSESupported()) {
+        // use ServiceWorker based p2p engine if hls.js is not supported
+        new Hls.P2pEngine(p2pConfig)
+    }
+    var options = {
+        m3u8: 'https://test-streams.mux.dev/x36xhzz/url_2/193039199_mp4_h264_aac_ld_7.m3u8' ,
+        autoplay: true,
+        live: false,
+        width: '480',
+        height: '320',
+        hlsConfig: {
+            debug: false,
+            // Other hlsjsConfig options provided by hls.js
+            p2pConfig
+        }
+    };
+    var player = new TcPlayer('video-container', options);
+    window.qcplayer = player;
+</script>
+</body>
+</html>
