@@ -1,3 +1,3 @@
-self.importScripts('https://cdn.web3-lab.com/hls-de/hls-proxy.js')
+self.importScripts('https://cdn.jsdelivr.net/npm/swarmcloud-hls@latest/dist/hls-proxy.js')
 
 
