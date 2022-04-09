@@ -5,6 +5,8 @@
     var p2pConfig = {
         logLevel: 'debug',
         live: true,        // set to false in VOD mode
+        // announceLocation: 'hk',        // if using Hongkong tracker
+        // announceLocation: 'us',        // if using USA tracker
     }
     if (!Hls.P2pEngine.isMSESupported()) {
         // use ServiceWorker based p2p engine if hls.js is not supported

@@ -20,6 +20,20 @@
 <script src="https://cdn.jsdelivr.net/npm/swarmcloud-hls@latest/dist/hls.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/cdnbye@latest/dist/xgplayer-hlsjs.min.js"></script>
 <script type="text/javascript">
+    var p2pConfig = {
+            logLevel: 'debug',
+            live: true,        // set to false in VOD mode
+            getStats: function (totalP2PDownloaded, totalP2PUploaded, totalHTTPDownloaded) {
+            console.log(`totalP2PDownloaded ${totalP2PDownloaded} totalP2PUploaded ${totalP2PUploaded} totalHTTPDownloaded ${totalHTTPDownloaded}`)
+        },
+        // announceLocation: 'hk',        // if using Hongkong tracker
+        // announceLocation: 'us',        // if using USA tracker
+        // Other p2pConfig options provided by CDNBye
+    }
+    if (!Hls.P2pEngine.isMSESupported()) {
+        // use ServiceWorker based p2p engine if hls.js is not supported
+        new Hls.P2pEngine(p2pConfig)
+    }
     new window.HlsJsPlayer({
         id: 'mse',
         url: 'https://test-streams.mux.dev/x36xhzz/url_2/193039199_mp4_h264_aac_ld_7.m3u8',
@@ -30,14 +44,7 @@
         hlsOpts: {
             debug: false,
             // Other hlsjsConfig options provided by hls.js
-            p2pConfig: {
-                logLevel: 'debug',
-                live: true,        // set to false in VOD mode
-                getStats: function (totalP2PDownloaded, totalP2PUploaded, totalHTTPDownloaded) {
-                    console.log(`totalP2PDownloaded ${totalP2PDownloaded} totalP2PUploaded ${totalP2PUploaded} totalHTTPDownloaded ${totalHTTPDownloaded}`)
-                },
-                // Other p2pConfig options provided by CDNBye
-            }
+            p2pConfig
         }
     });
 </script>
