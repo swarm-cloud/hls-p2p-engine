@@ -1,6 +1,6 @@
 **[English](README.md) | 简体中文**
 
-<h1 align="center"><a href="" target="_blank" rel="noopener noreferrer"><img width="250" src="https://swarmcloud.net/logo.png" alt="logo"></a></h1>
+<h1 align="center"><a href="" target="_blank" rel="noopener noreferrer"><img width="250" src="https://www.cdnbye.com/logo.png" alt="logo"></a></h1>
 <h4 align="center">Let your viewers become your unlimitedly scalable CDN.</h4>
 <p align="center">
   <a href="https://www.npmjs.com/package/swarmcloud-hls"><img src="https://img.shields.io/npm/v/swarmcloud-hls.svg?style=flat" alt="npm"></a>

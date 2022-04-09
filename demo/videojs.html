@@ -42,14 +42,19 @@
             }
         }
     };
-    videojs.Html5Hlsjs.addHook('beforeinitialize', (videojsPlayer, hlsjsInstance) => {
-        if (P2PEngineHls.isSupported()) {
-            var engine = new P2PEngineHls({
-                hlsjsInstance,
-                ...p2pConfig
-            });
-        }
-    });
+    if (videojs.Html5Hlsjs) {
+        videojs.Html5Hlsjs.addHook('beforeinitialize', (videojsPlayer, hlsjsInstance) => {
+            if (P2PEngineHls.isSupported()) {
+                new P2PEngineHls({
+                    hlsjsInstance,
+                    ...p2pConfig
+                });
+            }
+        });
+    } else {
+        new P2PEngineHls(p2pConfig);
+    }
+
     var player = videojs('video', options);
     player.hlsQualitySelector();
 </script>
