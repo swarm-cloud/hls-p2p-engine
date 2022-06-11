@@ -29,7 +29,7 @@
     }
     if (!P2pEngineHls.isMSESupported()) {
         // use ServiceWorker based p2p engine if hls.js is not supported
-        new P2pEngineHls(p2pConfig)
+        new P2pEngineHls.ServiceWorkerEngine(p2pConfig)
     }
     var player = new Clappr.Player(
         {

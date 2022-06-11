@@ -10,7 +10,7 @@
     }
     if (!Hls.P2pEngine.isMSESupported()) {
         // use ServiceWorker based p2p engine if hls.js is not supported
-        new Hls.P2pEngine(p2pConfig)
+        new Hls.P2pEngine.ServiceWorkerEngine(p2pConfig)
     }
     var player = new Playerjs({
         id:"player",

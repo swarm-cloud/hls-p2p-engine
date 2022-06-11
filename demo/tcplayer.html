@@ -39,7 +39,7 @@
     document.querySelector('#version').innerText = `hls.js version: ${Hls.version}  cdnbye version: ${Hls.engineVersion}`;
     if (!Hls.P2pEngine.isMSESupported()) {
         // use ServiceWorker based p2p engine if hls.js is not supported
-        new Hls.P2pEngine(p2pConfig)
+        new Hls.P2pEngine.ServiceWorkerEngine(p2pConfig)
     }
     var options = {
         m3u8: 'https://test-streams.mux.dev/x36xhzz/url_2/193039199_mp4_h264_aac_ld_7.m3u8' ,

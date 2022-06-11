@@ -54,7 +54,8 @@
             }
         });
     } else {
-        new P2PEngineHls(p2pConfig);
+        // use ServiceWorker based p2p engine if hls.js is not supported
+        new P2PEngineHls.ServiceWorkerEngine(p2pConfig);
     }
 
     var player = videojs('video', options);

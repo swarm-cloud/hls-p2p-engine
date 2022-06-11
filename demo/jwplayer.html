@@ -28,7 +28,7 @@
     }
     if (!Hls.P2pEngine.isMSESupported() || Hls.P2pEngine.getBrowser() === 'Mac-Safari') {
         // use ServiceWorker based p2p engine
-        new Hls.P2pEngine(p2pConfig)
+        new Hls.P2pEngine.ServiceWorkerEngine(p2pConfig)
     }
     jwplayer.key = "uoW6qHjBL3KNudxKVnwa3rt5LlTakbko9e6aQ6VUyKQ=";
     jwplayer('demoplayer').setup({
