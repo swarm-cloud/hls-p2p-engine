@@ -22,7 +22,7 @@
  SwarmCloud         | ✔ | ✔  | ✔  |  ✔ | ✔ |  ✔ |  ❌ |
 
 ## 使用方法
-参考[在线文档](https://swarmcloud.net/cn/views/hls/usage.html)
+参考[在线文档](https://swarmcloud.net/cn/views/hls-de/usage.html)
 
 ## 相关项目
 - [android-p2p-engine](https://gitee.com/cdnbye/android-p2p-engine) - 安卓端原生P2P流媒体加速引擎。

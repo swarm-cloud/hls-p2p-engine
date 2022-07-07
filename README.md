@@ -22,7 +22,7 @@ Service Worker     | ✔ | ✔  | ✔  | ✔  | ✔ | ✔  |  ❌ |
 SwarmCloud         | ✔ | ✔  | ✔  |  ✔ | ✔ |  ✔ |  ❌ |
 
 ## Usage
-See [documentation](https://swarmcloud.net/en/views/hls/usage.html)
+See [documentation](https://swarmcloud.net/en/views/hls-de/usage.html)
 
 ## Related Projects
 - [android-p2p-engine](https://github.com/cdnbye/android-p2p-engine) - Live/VOD P2P Engine for Android and Android TV.

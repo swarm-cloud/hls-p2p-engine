@@ -1,11 +1,8 @@
-<!-- head section -->
-<!-- skin -->
-<link rel="stylesheet" href="https://releases.flowplayer.org/7.2.6/skin/skin.css">
-<!-- CDNBye hls.js -->
-<script src="https://cdn.jsdelivr.net/npm/swarmcloud-hls@latest/dist/hls.min.js"></script>
-<!-- flowplayer -->
-<script src="//releases.flowplayer.org/7.2.7/flowplayer.min.js"></script>
-<!-- body section -->
+<link rel="stylesheet" href="//cdn.flowplayer.com/releases/native/3/stable/style/flowplayer.css" />
+<script src="//cdn.jsdelivr.net/npm/swarmcloud-hls@latest/dist/hls.min.js"></script>
+<script src="//cdn.flowplayer.com/releases/native/3/stable/default/flowplayer.min.js"></script>
+<script src="//cdn.flowplayer.com/releases/native/3/stable/plugins/hls.min.js"></script>
+<script src="//cdn.flowplayer.com/releases/native/3/stable/plugins/chromecast.min.js"></script>
 <div id="player"></div>
 <p id="version"></p>
 <h3>download info:</h3>
@@ -23,24 +20,18 @@
         // announceLocation: 'us',        // if using USA tracker
         // Other p2pConfig options provided by CDNBye
     }
-    document.querySelector('#version').innerText = `hls.js version: ${Hls.version}  cdnbye version: ${Hls.engineVersion}`;
-    flowplayer('#player', {
-        live: true,  // set if it's a live stream
-        ratio: 9/16, // set the aspect ratio of the stream
-        clip: {
-            sources: [
-                // path to the HLS m3u8
-                { type: "application/x-mpegurl", src: "https://test-streams.mux.dev/x36xhzz/url_2/193039199_mp4_h264_aac_ld_7.m3u8"},
-            ]
-        },
-        hlsjs: {
+    document.querySelector('#version').innerText = `hls.js version: ${Hls.version}  sdk version: ${Hls.engineVersion}`;
+
+    window.player = flowplayer("#player", {
+        token: "eyJraWQiOiJxaEZ6dWR4dmJuTDMiLCJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiJ9.eyJjIjoie1wiYWNsXCI6NixcImlkXCI6XCJxaEZ6dWR4dmJuTDNcIixcImRvbWFpblwiOltcImZsb3dwbGF5ZXIuY29tXCJdfSIsImlzcyI6IkZsb3dwbGF5ZXIifQ.pdpIEfbRN_6P-ayyNsEazPPPjr0RSmd8SjJyqp8w8BYXTYsg11FjCODutzLZ6jkSm5hHTqfg05cCVuHcFIfI1w",
+        src    : "https://test-streams.mux.dev/x36xhzz/url_2/193039199_mp4_h264_aac_ld_7.m3u8",
+        title  : "flowplayer / hls",
+        hls: {
             debug: false,
             // Other hlsjsConfig options provided by hls.js
             p2pConfig
         }
-    });
-    if (!Hls.P2pEngine.isMSESupported()) {
-        // use ServiceWorker based p2p engine if hls.js is not supported
-        new Hls.P2pEngine.ServiceWorkerEngine(p2pConfig)
-    }
+    })
+    p2pConfig.hlsjsInstance = player.hls
+    new Hls.P2pEngine(p2pConfig)
 </script>
