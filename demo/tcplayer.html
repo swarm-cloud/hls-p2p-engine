@@ -22,7 +22,7 @@
 <p id="version"></p>
 <h3>download info:</h3>
 <p id="info"></p>
-<script src="https://cdn.jsdelivr.net/npm/swarmcloud-hls@latest/dist/hls.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swarmcloud-hls@latest/dist/hls.light.min.js"></script>
 <script src="//imgcache.qq.com/open/qcloud/video/vcplayer/TcPlayer-2.2.3.js"></script>
 <script>
     var p2pConfig = {
@@ -38,7 +38,7 @@
     }
     document.querySelector('#version').innerText = `hls.js version: ${Hls.version}  cdnbye version: ${Hls.engineVersion}`;
     if (!Hls.P2pEngine.isMSESupported()) {
-        // use ServiceWorker based p2p engine if hls.js is not supported
+        // use ServiceWorker based p2p engine if hls.js is not supported, need additional file sw.js
         new Hls.P2pEngine.ServiceWorkerEngine(p2pConfig)
     }
     var options = {

@@ -8,7 +8,7 @@
 <p id="info"></p>
 <link rel="stylesheet" href="//cdn.plyr.io/3.4.7/plyr.css">
 <script src="//cdn.plyr.io/3.4.7/plyr.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/swarmcloud-hls@latest/dist/hls.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swarmcloud-hls@latest/dist/hls.light.min.js"></script>
 <script>
     var p2pConfig = {
         logLevel: 'debug',
@@ -23,7 +23,7 @@
     }
     document.querySelector('#version').innerText = `hls.js version: ${Hls.version}  cdnbye version: ${Hls.engineVersion}`;
     if (!Hls.P2pEngine.isMSESupported()) {
-        // use ServiceWorker based p2p engine if hls.js is not supported
+        // use ServiceWorker based p2p engine if hls.js is not supported, need additional file sw.js
         new Hls.P2pEngine.ServiceWorkerEngine(p2pConfig)
     }
     document.addEventListener('DOMContentLoaded', () => {

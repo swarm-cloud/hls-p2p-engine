@@ -7,7 +7,7 @@
 </style>
 <div id="dplayer"></div>
 <div id="stats"></div>
-<script src="https://cdn.jsdelivr.net/npm/swarmcloud-hls@latest/dist/hls.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swarmcloud-hls@latest/dist/hls.light.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/dplayer@1.26.0"></script>
 <script>
     var p2pConfig = {
@@ -22,7 +22,7 @@
     if(Hls.isSupported()) {
         type = 'customHls';
     } else {
-        // use ServiceWorker based p2p engine if hls.js is not supported
+        // use ServiceWorker based p2p engine if hls.js is not supported, need additional file sw.js
         new Hls.P2pEngine.ServiceWorkerEngine(p2pConfig)
     }
     const dp = new DPlayer({

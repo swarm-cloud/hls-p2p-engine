@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>CDNBye JWPlayer Demo</title>
     <!-- CDNBye Plugin -->
-    <script src="https://cdn.jsdelivr.net/npm/swarmcloud-hls@latest/dist/hls.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swarmcloud-hls@latest/dist/hls.light.min.js"></script>
     <script src="//cdn.jsdelivr.net/gh/teranode/jw-provider@0.0.9/provider.hlsjs.js"></script>
 <!--    <script src="//cdn.jsdelivr.net/npm/cdnbye@latest/dist/jwplayer.provider.hls.js"></script>-->
     <!-- JW Player Builds -->
@@ -27,7 +27,7 @@
         // Other p2pConfig options provided by CDNBye
     }
     if (!Hls.P2pEngine.isMSESupported() || Hls.P2pEngine.getBrowser() === 'Mac-Safari') {
-        // use ServiceWorker based p2p engine
+        // use ServiceWorker based p2p engine, need additional file sw.js
         new Hls.P2pEngine.ServiceWorkerEngine(p2pConfig)
     }
     jwplayer.key = "uoW6qHjBL3KNudxKVnwa3rt5LlTakbko9e6aQ6VUyKQ=";
