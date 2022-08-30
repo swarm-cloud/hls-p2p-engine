@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>mui-player demo</title>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/mui-player@1.7.0/dist/mui-player.min.css">
+    <script src="//cdn.jsdelivr.net/npm/mui-player@1.7.0/dist/mui-player.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/swarmcloud-hls@latest/dist/hls.light.min.js"></script>
+</head>
+
+<body>
+<h3 style="text-align: center;">HLS</h3>
+<div id="mui-player" style="max-width: 700px;margin: auto"></div>
+</body>
+
+<script>
+    var p2pConfig = {
+        logLevel: 'debug',
+        live: true,        // set to false in VOD mode
+        // announceLocation: 'hk',        // if using Hongkong tracker
+        // announceLocation: 'us',        // if using USA tracker
+        // Other p2pConfig options provided by CDNBye
+    }
+    if (!Hls.P2pEngine.isMSESupported()) {
+        // use ServiceWorker based p2p engine, need additional file sw.js
+        new Hls.P2pEngine.ServiceWorkerEngine(p2pConfig)
+    }
+    var mp = new MuiPlayer({
+        container: document.getElementById("mui-player"),
+        src: 'https://test-streams.mux.dev/x36xhzz/url_2/193039199_mp4_h264_aac_ld_7.m3u8',
+        parse: {
+        type: 'hls',
+        loader: Hls,
+        config: {
+            debug: false,
+            p2pConfig,
+        },
+    },
+    });
+</script>
+</html>

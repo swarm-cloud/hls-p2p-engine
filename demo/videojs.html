@@ -44,15 +44,17 @@
             }
         }
     };
+    const initP2pEngine = (videojsPlayer, hlsjsInstance) => {
+        if (P2PEngineHls.isSupported()) {
+            new P2PEngineHls({
+                hlsjsInstance,
+                ...p2pConfig
+            });
+        }
+    }
     if (videojs.Html5Hlsjs) {
-        videojs.Html5Hlsjs.addHook('beforeinitialize', (videojsPlayer, hlsjsInstance) => {
-            if (P2PEngineHls.isSupported()) {
-                new P2PEngineHls({
-                    hlsjsInstance,
-                    ...p2pConfig
-                });
-            }
-        });
+        videojs.Html5Hlsjs.addHook('beforeinitialize', initP2pEngine);
+        // videojs.Html5Hlsjs.removeHook('beforeinitialize', initP2pEngine);  // remove the hook function when leave page
     } else {
         // use ServiceWorker based p2p engine if hls.js is not supported, need additional file sw.js
         new P2PEngineHls.ServiceWorkerEngine(p2pConfig);
