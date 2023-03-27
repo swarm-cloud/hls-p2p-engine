@@ -21,9 +21,10 @@
     var player = videojs('my_video_1');
 
     var engine = new P2PEngineHls({
+        swFile: './sw.js',
         // logLevel: 'debug',
-        // announceLocation: 'hk',        // if using Hongkong tracker
-        // announceLocation: 'us',        // if using USA tracker
+        // trackerZone: 'hk',        // if using Hongkong tracker
+        // trackerZone: 'us',        // if using USA tracker
         // token: YOUR_TOKEN
     })
 

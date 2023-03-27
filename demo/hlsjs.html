@@ -12,8 +12,9 @@
     var p2pConfig = {
         logLevel: 'debug',
         live: false,        // set to false in VOD mode
-        // announceLocation: 'hk',        // if using Hongkong tracker
-        // announceLocation: 'us',        // if using USA tracker
+        swFile: './sw.js',
+        // trackerZone: 'hk',        // if using Hongkong tracker
+        // trackerZone: 'us',        // if using USA tracker
         // token: YOUR_TOKEN
         // Other p2pConfig options provided by CDNBye
     }
@@ -21,9 +22,9 @@
     var video = document.getElementById('video');
     if(Hls.isSupported()) {
         var hls = new Hls({
-            maxBufferSize: 0,       // Highly recommended setting
-            maxBufferLength: 5,     // Highly recommended setting
-            liveSyncDuration: 30,   // Highly recommended setting
+            maxBufferSize: 0,       // Highly recommended setting in live mode
+            maxBufferLength: 15,     // Highly recommended setting in live mode
+            liveSyncDurationCount: 10,   // Highly recommended setting in live mode
         });
         p2pConfig.hlsjsInstance = hls;
         hls.loadSource(source);

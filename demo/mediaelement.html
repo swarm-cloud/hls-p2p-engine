@@ -20,12 +20,13 @@
     var p2pConfig = {
         logLevel: 'debug',
         live: true,        // set to false in VOD mode
+        swFile: './sw.js',
         getStats: function (totalP2PDownloaded, totalP2PUploaded, totalHTTPDownloaded) {
             var total = totalHTTPDownloaded + totalP2PDownloaded;
             document.querySelector('#info').innerText = `p2p ratio: ${Math.round(totalP2PDownloaded/total*100)}%, saved traffic: ${totalP2PDownloaded}KB, uploaded: ${totalP2PUploaded}KB`;
         },
-        // announceLocation: 'hk',        // if using Hongkong tracker
-        // announceLocation: 'us',        // if using USA tracker
+        // trackerZone: 'hk',        // if using Hongkong tracker
+        // trackerZone: 'us',        // if using USA tracker
         // token: YOUR_TOKEN
         // Other p2pConfig options provided by CDNBye
     }
