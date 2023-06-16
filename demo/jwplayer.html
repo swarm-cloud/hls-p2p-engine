@@ -26,7 +26,8 @@
         // token: YOUR_TOKEN
         // Other p2pConfig options provided by CDNBye
     }
-    if (!Hls.P2pEngine.isMSESupported() || Hls.P2pEngine.getBrowser() === 'Mac-Safari') {
+    const isSamsungBrowser = navigator.userAgent.indexOf('SamsungBrowser') > - 1;
+    if (!isSamsungBrowser && !Hls.P2pEngine.isMSESupported() || Hls.P2pEngine.getBrowser() === 'Mac-Safari') {
         // use ServiceWorker based p2p engine, need additional file sw.js
         new Hls.P2pEngine.ServiceWorkerEngine(p2pConfig)
     }
@@ -38,6 +39,7 @@
         autostart: true,
         hlsjsdefault: true,
         hlsjsConfig: {
+            liveSyncDurationCount: 3,
             // debug: true,
             // Other hlsjsConfig options provided by hls.js
             p2pConfig
