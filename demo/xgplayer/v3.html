@@ -39,14 +39,14 @@
   });
   const events = window.Player.Events;
   [events.READY, events.URL_CHANGE].forEach(event => {
+    var p2pConfig = {
+      swFile: './sw.js',
+      // trackerZone: 'hk',        // if using Hongkong tracker
+      // trackerZone: 'us',        // if using USA tracker
+      // token: YOUR_TOKEN
+      // Other p2pConfig options if applicable
+    }
     player.on(event, () => {
-      var p2pConfig = {
-        swFile: './sw.js',
-        // trackerZone: 'hk',        // if using Hongkong tracker
-        // trackerZone: 'us',        // if using USA tracker
-        // token: YOUR_TOKEN
-        // Other p2pConfig options if applicable
-      }
       var hls = player.getPlugin("HlsJsPlugin").hls
       if (P2pEngineHls.isMSESupported() && hls) {
         p2pConfig.hlsjsInstance = hls;        // set hlsjs instance to SDK

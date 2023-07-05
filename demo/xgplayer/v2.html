@@ -17,26 +17,10 @@
 <body>
 <div id="mse"></div>
 <script src="//cdn.jsdelivr.net/npm/xgplayer@2.30.2/browser/index.js" charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/swarmcloud-hls@latest/dist/hls.light.min.js"></script>
-<script src="//cdn.jsdelivr.net/npm/cdnbye@latest/dist/xgplayer-hlsjs.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/xgplayer-hls.js@2.6.4/browser/index.js" charset="utf-8"></script>
+<script src="//cdn.jsdelivr.net/npm/swarmcloud-hls@latest/dist/p2p-engine.min.js"></script>
 <script type="text/javascript">
-var p2pConfig = {
-        logLevel: 'debug',
-        live: true,        // set to false in VOD mode
-        swFile: './sw.js',
-        getStats: function (totalP2PDownloaded, totalP2PUploaded, totalHTTPDownloaded) {
-        console.log(`totalP2PDownloaded ${totalP2PDownloaded} totalP2PUploaded ${totalP2PUploaded} totalHTTPDownloaded ${totalHTTPDownloaded}`)
-    },
-    // trackerZone: 'hk',        // if using Hongkong tracker
-    // trackerZone: 'us',        // if using USA tracker
-    // token: YOUR_TOKEN
-    // Other p2pConfig options provided by CDNBye
-}
-if (!Hls.P2pEngine.isMSESupported()) {
-    // use ServiceWorker based p2p engine if hls.js is not supported, need additional file sw.js
-    new Hls.P2pEngine.ServiceWorkerEngine(p2pConfig)
-}
-new window.HlsJsPlayer({
+var player = new window.HlsJsPlayer({
     id: 'mse',
     url: 'https://test-streams.mux.dev/x36xhzz/url_2/193039199_mp4_h264_aac_ld_7.m3u8',
     autoplay: true,
@@ -46,10 +30,27 @@ new window.HlsJsPlayer({
     width: window.innerWidth,
     hlsOpts: {
         debug: false,
-        // Other hlsjsConfig options provided by hls.js
-        p2pConfig
     }
 });
+var p2pConfig = {
+    logLevel: 'debug',
+    live: true,        // set to false in VOD mode
+    swFile: './sw.js',
+    getStats: function (totalP2PDownloaded, totalP2PUploaded, totalHTTPDownloaded) {
+        console.log(`totalP2PDownloaded ${totalP2PDownloaded} totalP2PUploaded ${totalP2PUploaded} totalHTTPDownloaded ${totalHTTPDownloaded}`)
+    },
+    // trackerZone: 'hk',        // if using Hongkong tracker
+    // trackerZone: 'us',        // if using USA tracker
+    // token: YOUR_TOKEN
+    // Other p2pConfig options provided by CDNBye
+}
+player.on('ready', () => {
+    var hls = player.hls
+    if (P2pEngineHls.isMSESupported() && hls) {
+        p2pConfig.hlsjsInstance = hls;        // set hlsjs instance to SDK
+    }
+    new P2pEngineHls(p2pConfig)
+})
 </script>
 </body>
 </html>
