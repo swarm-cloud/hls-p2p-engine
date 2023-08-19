@@ -1,7 +1,8 @@
 <link rel="stylesheet" href="//cdn.flowplayer.com/releases/native/3/stable/style/flowplayer.css" />
-<script src="//cdn.jsdelivr.net/npm/swarmcloud-hls@latest/dist/hls.light.min.js"></script>
-<script src="//cdn.flowplayer.com/releases/native/3/stable/default/flowplayer.min.js"></script>
 <script src="//cdn.flowplayer.com/releases/native/3/stable/plugins/hls.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/swarmcloud-hls@latest/dist/p2p-engine.min.js"></script>
+<script src="//cdn.flowplayer.com/releases/native/3/stable/default/flowplayer.min.js"></script>
+
 <script src="//cdn.flowplayer.com/releases/native/3/stable/plugins/chromecast.min.js"></script>
 <div id="player"></div>
 <p id="version"></p>
@@ -22,7 +23,7 @@
         // token: YOUR_TOKEN
         // Other p2pConfig options provided by CDNBye
     }
-    document.querySelector('#version').innerText = `hls.js version: ${Hls.version}  sdk version: ${Hls.engineVersion}`;
+    // document.querySelector('#version').innerText = `hls.js version: ${Hls.version}  sdk version: ${Hls.engineVersion}`;
 
     window.player = flowplayer("#player", {
         token: "eyJraWQiOiJxaEZ6dWR4dmJuTDMiLCJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiJ9.eyJjIjoie1wiYWNsXCI6NixcImlkXCI6XCJxaEZ6dWR4dmJuTDNcIixcImRvbWFpblwiOltcImZsb3dwbGF5ZXIuY29tXCJdfSIsImlzcyI6IkZsb3dwbGF5ZXIifQ.pdpIEfbRN_6P-ayyNsEazPPPjr0RSmd8SjJyqp8w8BYXTYsg11FjCODutzLZ6jkSm5hHTqfg05cCVuHcFIfI1w",
@@ -31,9 +32,10 @@
         hls: {
             debug: false,
             // Other hlsjsConfig options provided by hls.js
-            p2pConfig
         }
     })
-    p2pConfig.hlsjsInstance = player.hls
-    new Hls.P2pEngine(p2pConfig)
+    player.on('loadstart', () => {
+        p2pConfig.hlsjsInstance = player.hls
+        new P2PEngineHls(p2pConfig)
+    })
 </script>
