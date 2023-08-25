@@ -62,8 +62,11 @@
         new P2PEngineHls.ServiceWorkerEngine(p2pConfig);
     }
 
-    var player = videojs('video', options);
-    player.hlsQualitySelector();
+    P2PEngineHls.tryRegisterServiceWorker(p2pConfig).then(() => {
+        var player = videojs('video', options);
+        player.hlsQualitySelector();
+    })
+
 </script>
 </body>
 </html>

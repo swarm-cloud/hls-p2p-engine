@@ -41,22 +41,25 @@
         // use ServiceWorker based p2p engine if hls.js is not supported, need additional file sw.js
         new P2pEngineHls.ServiceWorkerEngine(p2pConfig)
     }
-    var player = new Clappr.Player(
-        {
-            source: "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8",
-            parentId: "#player",
-            autoPlay: true,
-            plugins: [LevelSelector, SwarmCloudClapprPlugin],
-            playback: {
-                hlsjsConfig: {
-                    maxBufferSize: 0,       // Highly recommended setting in live mode
-                    maxBufferLength: 12,     // Highly recommended setting in live mode
-                    liveSyncDurationCount: 10,   // Highly recommended setting in live mode
-                    // Other hlsjsConfig options provided by hls.js
-                    p2pConfig
+    P2PEngineHls.tryRegisterServiceWorker(p2pConfig).then(() => {
+        var player = new Clappr.Player(
+            {
+                source: "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8",
+                parentId: "#player",
+                autoPlay: true,
+                plugins: [LevelSelector, SwarmCloudClapprPlugin],
+                playback: {
+                    hlsjsConfig: {
+                        maxBufferSize: 0,       // Highly recommended setting in live mode
+                        maxBufferLength: 12,     // Highly recommended setting in live mode
+                        liveSyncDurationCount: 10,   // Highly recommended setting in live mode
+                        // Other hlsjsConfig options provided by hls.js
+                        p2pConfig
+                    }
                 }
-            }
-        });
+            });
+    })
+
 </script>
 </body>
 </html>

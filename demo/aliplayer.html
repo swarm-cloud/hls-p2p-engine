@@ -12,28 +12,31 @@
 <body>
 <div class="prism-player" id="player-con"></div>
 <script>
-    var player = new Aliplayer({
-            "id": "player-con",
-            "source": "https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8",
-            "width": "100%",
-            "height": "500px",
-            "autoplay": true,
-            "isLive": false,
-            "rePlay": true,
-            "playsinline": true,
-            "preload": true,
-            "controlBarVisibility": "hover",
-            "useH5Prism": true
-        }, function (player) {
-            console.log("The player is created");
-        }
-    );
-
     var engine = new P2PEngineHls({
         swFile: './sw.js',
+        // logLevel: 'debug',
         // trackerZone: 'hk',        // if using Hongkong tracker
         // trackerZone: 'us',        // if using USA tracker
         // token: YOUR_TOKEN
     })
+    engine.registerServiceWorker().catch(()=>{}).finally(() => {
+        var player = new Aliplayer({
+                "id": "player-con",
+                "source": "https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8",
+                "width": "100%",
+                "height": "500px",
+                "autoplay": true,
+                "isLive": false,
+                "rePlay": true,
+                "playsinline": true,
+                "preload": true,
+                "controlBarVisibility": "hover",
+                "useH5Prism": true
+            }, function (player) {
+                console.log("The player is created");
+            }
+        );
+    })
+
 </script>
 </body>

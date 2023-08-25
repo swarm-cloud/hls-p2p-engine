@@ -35,7 +35,9 @@
     }
     // This is using the built-in support of the plain video element, without using hls.js.
     else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-        video.src = source;
+        P2PEngineHls.tryRegisterServiceWorker(p2pConfig).then(() => {
+            video.src = source;
+        })
         video.addEventListener('loadedmetadata',function() {
             video.play();
         });

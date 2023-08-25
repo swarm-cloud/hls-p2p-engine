@@ -7,7 +7,7 @@
 </style>
 <div id="dplayer"></div>
 <div id="stats"></div>
-<script src="https://cdn.jsdelivr.net/npm/swarmcloud-hls@latest/dist/hls.light.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swarmcloud-hls@latest/dist/hls.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/dplayer@1.26.0"></script>
 <script>
     var p2pConfig = {
@@ -27,35 +27,37 @@
         // use ServiceWorker based p2p engine if hls.js is not supported, need additional file sw.js
         new Hls.P2pEngine.ServiceWorkerEngine(p2pConfig)
     }
-    const dp = new DPlayer({
-        container: document.getElementById('dplayer'),
-        autoplay: true,
-        video: {
-            url: 'https://test-streams.mux.dev/x36xhzz/url_2/193039199_mp4_h264_aac_ld_7.m3u8',
-            type: type,
-            customType: {
-                'customHls': function (video, player) {
-                    const hls = new Hls({
-                        debug: false,
-                        // Other hlsjsConfig options provided by hls.js
-                        p2pConfig
-                    });
-                    hls.loadSource(video.src);
-                    hls.attachMedia(video);
-                    hls.p2pEngine.on('stats', function (stats) {
-                        _totalP2PDownloaded = stats.totalP2PDownloaded;
-                        _totalP2PUploaded = stats.totalP2PUploaded;
-                        updateStats();
-                    }).on('peerId', function (peerId) {
-                        _peerId = peerId;
-                    }).on('peers', function (peers) {
-                        _peerNum = peers.length;
-                        updateStats();
-                    });
+    Hls.P2pEngine.tryRegisterServiceWorker(p2pConfig).then(() => {
+        const dp = new DPlayer({
+            container: document.getElementById('dplayer'),
+            autoplay: true,
+            video: {
+                url: 'https://test-streams.mux.dev/x36xhzz/url_2/193039199_mp4_h264_aac_ld_7.m3u8',
+                type: type,
+                customType: {
+                    'customHls': function (video, player) {
+                        const hls = new Hls({
+                            debug: false,
+                            // Other hlsjsConfig options provided by hls.js
+                            p2pConfig
+                        });
+                        hls.loadSource(video.src);
+                        hls.attachMedia(video);
+                        hls.p2pEngine.on('stats', function (stats) {
+                            _totalP2PDownloaded = stats.totalP2PDownloaded;
+                            _totalP2PUploaded = stats.totalP2PUploaded;
+                            updateStats();
+                        }).on('peerId', function (peerId) {
+                            _peerId = peerId;
+                        }).on('peers', function (peers) {
+                            _peerNum = peers.length;
+                            updateStats();
+                        });
+                    }
                 }
             }
-        }
-    });
+        });
+    })
 
     function updateStats() {
         var text = 'P2P正在为您加速' + (_totalP2PDownloaded/1024).toFixed(2)

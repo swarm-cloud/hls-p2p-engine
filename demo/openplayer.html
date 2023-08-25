@@ -11,7 +11,7 @@
 <p id="version"></p>
 <h3>download info:</h3>
 <p id="info"></p>
-<script src="https://cdn.jsdelivr.net/npm/swarmcloud-hls@latest/dist/hls.light.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swarmcloud-hls@latest/dist/hls.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/openplayerjs@2.0.0"></script>
 </body>
 <script>
@@ -33,13 +33,16 @@
         // use ServiceWorker based p2p engine if hls.js is not supported, need additional file sw.js
         new Hls.P2pEngine.ServiceWorkerEngine(p2pConfig)
     }
-    var player = new OpenPlayer('video', {
-        hls: {
-            debug: false,
-            // Other hlsjsConfig options provided by hls.js
-            p2pConfig
-        }
-    });
-    player.init();
+    Hls.P2pEngine.tryRegisterServiceWorker(p2pConfig).then(() => {
+        var player = new OpenPlayer('video', {
+            hls: {
+                debug: false,
+                // Other hlsjsConfig options provided by hls.js
+                p2pConfig
+            }
+        });
+        player.init();
+    })
+
 </script>
 </html>

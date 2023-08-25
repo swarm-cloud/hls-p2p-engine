@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>CDNBye JWPlayer Demo</title>
     <!-- CDNBye Plugin -->
-    <script src="https://cdn.jsdelivr.net/npm/swarmcloud-hls@latest/dist/hls.light.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swarmcloud-hls@latest/dist/hls.min.js"></script>
     <script src="//cdn.jsdelivr.net/gh/teranode/jw-provider@0.0.12/provider.hlsjs.js"></script>
 <!--    <script src="//cdn.jsdelivr.net/npm/cdnbye@latest/dist/jwplayer.provider.hls.js"></script>-->
     <!-- JW Player Builds -->
@@ -32,19 +32,22 @@
         new Hls.P2pEngine.ServiceWorkerEngine(p2pConfig)
     }
     jwplayer.key = "uoW6qHjBL3KNudxKVnwa3rt5LlTakbko9e6aQ6VUyKQ=";
-    jwplayer('demoplayer').setup({
-        file: 'https://test-streams.mux.dev/x36xhzz/url_2/193039199_mp4_h264_aac_ld_7.m3u8',
-        width: 512,
-        height: 288,
-        autostart: true,
-        hlsjsdefault: true,
-        hlsjsConfig: {
-            liveSyncDurationCount: 3,
-            // debug: true,
-            // Other hlsjsConfig options provided by hls.js
-            p2pConfig
-        },
-    });
+    Hls.P2pEngine.tryRegisterServiceWorker(p2pConfig).then(() => {
+        jwplayer('demoplayer').setup({
+            file: 'https://test-streams.mux.dev/x36xhzz/url_2/193039199_mp4_h264_aac_ld_7.m3u8',
+            width: 512,
+            height: 288,
+            autostart: true,
+            hlsjsdefault: true,
+            hlsjsConfig: {
+                liveSyncDurationCount: 3,
+                // debug: true,
+                // Other hlsjsConfig options provided by hls.js
+                p2pConfig
+            },
+        });
+    })
+
 </script>
 </body>
 </html>

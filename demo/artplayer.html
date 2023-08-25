@@ -6,7 +6,7 @@
 </head>
 <body>
 <div class="artplayer-app" style="width:400px;height:300px"></div>
-<script src="https://cdn.jsdelivr.net/npm/swarmcloud-hls@latest/dist/hls.light.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swarmcloud-hls@latest/dist/hls.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/artplayer@5.0.9/dist/artplayer.js"></script>
 <script>
     var p2pConfig = {
@@ -21,28 +21,30 @@
         // token: YOUR_TOKEN
         // Other p2pConfig options provided by CDNBye
     }
-    var art = new Artplayer({
-        container: '.artplayer-app',
-        whitelist: ['*'],
-        playsInline: true,
-        url: 'https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8',
-        customType: {
-            m3u8: function (video, url) {
-                if (Hls.P2pEngine.isMSESupported()) {
-                    var hls = new Hls({
-                        p2pConfig
-                    });
-                    hls.loadSource(url);
-                    hls.attachMedia(video);
-                } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-                    video.src = url;
-                    // use ServiceWorker based p2p engine if hls.js is not supported
-                    new Hls.P2pEngine(p2pConfig)
-                }
-
+    Hls.P2pEngine.tryRegisterServiceWorker(p2pConfig).then(() => {
+        var art = new Artplayer({
+            container: '.artplayer-app',
+            whitelist: ['*'],
+            playsInline: true,
+            url: 'https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8',
+            customType: {
+                m3u8: function (video, url) {
+                    if (Hls.P2pEngine.isMSESupported()) {
+                        var hls = new Hls({
+                            p2pConfig
+                        });
+                        hls.loadSource(url);
+                        hls.attachMedia(video);
+                    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+                        video.src = url;
+                        // use ServiceWorker based p2p engine if hls.js is not supported
+                        new Hls.P2pEngine(p2pConfig)
+                    }
+                },
             },
-        },
-    });
+        });
+    })
+
 </script>
 </body>
 </html>

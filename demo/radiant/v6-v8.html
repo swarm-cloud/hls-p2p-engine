@@ -34,31 +34,34 @@
         // use ServiceWorker based p2p engine if hls.js is not supported, need additional file sw.js
         new P2pEngineHls.ServiceWorkerEngine(p2pConfig)
     }
-    const settings = {
-        licenseKey: 'Kl8lMDQ9b2kzeWNlOHoyZHM3YjgrMnNlP3JvbTVkYXNpczMwZGIwQSVfKg==',  // replace with your own license key
-        src: src,
-        width: 640,
-        height: 360,
-        forceHlsJSOnIpadOS: true,
-        hlsJSCustomConfig: {
-            maxBufferSize: 0,       // Highly recommended setting in live mode
-            maxBufferLength: 15,     // Highly recommended setting in live mode
-            liveSyncDurationCount: 10,   // Highly recommended setting in live mode
-        }
-    };
-    const elementID = 'rmp';
-    const rmp = new RadiantMP(elementID);
-    const container = document.getElementById(elementID);
-    container.addEventListener('hlsinstancecreated', () => {
-        const hlsjsInstance = rmp.getHlsJSInstance();
-        if (P2PEngineHls.isSupported()) {
-            new P2pEngineHls({
-                hlsjsInstance,
-                ...p2pConfig
-            });
-        }
-    });
-    rmp.init(settings);
+    P2PEngineHls.tryRegisterServiceWorker(p2pConfig).then(() => {
+        const settings = {
+            licenseKey: 'Kl8lMDQ9b2kzeWNlOHoyZHM3YjgrMnNlP3JvbTVkYXNpczMwZGIwQSVfKg==',  // replace with your own license key
+            src: src,
+            width: 640,
+            height: 360,
+            forceHlsJSOnIpadOS: true,
+            hlsJSCustomConfig: {
+                maxBufferSize: 0,       // Highly recommended setting in live mode
+                maxBufferLength: 15,     // Highly recommended setting in live mode
+                liveSyncDurationCount: 10,   // Highly recommended setting in live mode
+            }
+        };
+        const elementID = 'rmp';
+        const rmp = new RadiantMP(elementID);
+        const container = document.getElementById(elementID);
+        container.addEventListener('hlsinstancecreated', () => {
+            const hlsjsInstance = rmp.getHlsJSInstance();
+            if (P2PEngineHls.isSupported()) {
+                new P2pEngineHls({
+                    hlsjsInstance,
+                    ...p2pConfig
+                });
+            }
+        });
+        rmp.init(settings);
+    })
+
 </script>
 </body>
 </html>
