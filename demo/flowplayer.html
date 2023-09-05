@@ -10,7 +10,7 @@
 <script>
     var p2pConfig = {
         logLevel: 'debug',
-        live: true,        // set to false in VOD mode
+        live: false,        // set to true in live mode
         swFile: './sw.js',
         getStats: function (totalP2PDownloaded, totalP2PUploaded, totalHTTPDownloaded) {
             var total = totalHTTPDownloaded + totalP2PDownloaded;

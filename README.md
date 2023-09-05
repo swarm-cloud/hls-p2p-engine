@@ -7,14 +7,14 @@
   <a href="https://www.jsdelivr.com/package/npm/swarmcloud-hls"><img src="https://data.jsdelivr.com/v1/package/npm/swarmcloud-hls/badge" alt="jsdelivr"></a>
 </p>
 
-This SDK integrates 2 p2p streaming engines, one is [hlsjs based](https://swarmcloud.net/views/web/introduction.html), another is [ServiceWorker based](https://swarmcloud.net/views/hls-sw/introduction.html). 
+This SDK integrates 2 p2p streaming engines, one is [hlsjs based](https://swarmcloud.net/views/web/introduction.html), another is ServiceWorker based.
 <br>
 As you might expect, it supports all modern browsers (including iOS Safari) and all web players (including players without hls.js built-in)!
 
 ## Browser Support
 WebRTC has already been incorporated into the HTML5 standard and it is broadly deployed in modern browsers. The compatibility of SwarmCloud depends on the browser support of WebRTC, MediaSource API or Service Worker.
 
-Compatibility|Chrome | Firefox | macOS Safari | Opera | Edge | iOS Safari | IE | 
+Compatibility|Chrome | Firefox | macOS Safari | Opera | Edge | iOS Safari | IE |
 :-: | :-: | :-: | :-: | :-: | :-:| :-:| :-:
 WebRTC Datachannel | ✔ | ✔  | ✔  |  ✔ | ✔ | ✔  |  ❌ |
 MSE                | ✔  | ✔  | ✔  | ✔ | ✔ | ❌ |  ❌ |

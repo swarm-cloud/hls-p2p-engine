@@ -7,14 +7,14 @@
   <a href="https://www.jsdelivr.com/package/npm/swarmcloud-hls"><img src="https://data.jsdelivr.com/v1/package/npm/swarmcloud-hls/badge" alt="jsdelivr"></a>
 </p>
 
-本 SDK 整合了两个 P2P 引擎：一个是[基于hlsjs](https://swarmcloud.net/views/web/introduction.html)的，用于支持 [MSE]() 的现代浏览器，另一个是[基于ServiceWorker](https://swarmcloud.net/views/hls-sw/introduction.html)的，用于不支持 MSE 的iOS Safari 。
+本 SDK 整合了两个 P2P 引擎：一个是[基于hlsjs](https://swarmcloud.net/views/web/introduction.html)的，用于支持 [MSE]() 的现代浏览器，另一个是基于ServiceWorker的，用于不支持 MSE 的iOS Safari 。
 <br>
 在双引擎的驱动下，支持所有可播放 HLS 的 HTML5 播放器，对于非 hls.js 内核的播放器采用 ServiceWorker 拦截网络请求从而实现 P2P 。
 
 ## 浏览器支持情况
 由于WebRTC已成为HTML5标准，目前大部分主流浏览器都已经支持。兼容性取决于浏览器是否支持 WebRTC ，以及 ServiceWorker 或者 MediaSource API 其中至少一个特性。
 
- 兼容性|Chrome | Firefox | macOS Safari| Opera | Edge | iOS Safari | IE | 
+ 兼容性|Chrome | Firefox | macOS Safari| Opera | Edge | iOS Safari | IE |
 :-: | :-: | :-: | :-: | :-: | :-:| :-:| :-:
  WebRTC Datachannel | ✔ | ✔  | ✔  |  ✔ | ✔ | ✔  |  ❌ |
  MSE                | ✔  | ✔  | ✔  | ✔ | ✔ | ❌ |  ❌ |

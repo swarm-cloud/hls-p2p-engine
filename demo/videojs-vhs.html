@@ -16,6 +16,7 @@
     var player = videojs('my_video_1');
     var engine = new P2PEngineHls({
         swFile: './sw.js',
+        live: false,        // set to true in live mode
         // logLevel: 'debug',
         // trackerZone: 'hk',        // if using Hongkong tracker
         // trackerZone: 'us',        // if using USA tracker

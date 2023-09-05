@@ -11,7 +11,7 @@
     document.querySelector('#version').innerText = `hls.js version: ${Hls.version}  p2p version: ${P2PEngineHls.version}`;
     var p2pConfig = {
         logLevel: 'debug',
-        live: false,        // set to false in VOD mode
+        live: false,        // set to true in live mode
         swFile: './sw.js',
         // trackerZone: 'hk',        // if using Hongkong tracker
         // trackerZone: 'us',        // if using USA tracker
