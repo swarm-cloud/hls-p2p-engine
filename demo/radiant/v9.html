@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 </head>
 <body>
-<script src="https://cdn.radiantmediatechs.com/rmp/9.5.0/js/rmp.min.js"></script>
+<script src="https://cdn.radiantmediatechs.com/rmp/9.9.0/js/rmp.min.js"></script>
 <!-- P2PEngine -->
 <script src="https://cdn.jsdelivr.net/npm/swarmcloud-hls@latest/dist/p2p-engine.min.js"></script>
 <div id="rmp"></div>
@@ -34,6 +34,17 @@
         // use ServiceWorker based p2p engine if hls.js is not supported, need additional file sw.js
         new P2pEngineHls.ServiceWorkerEngine(p2pConfig)
     }
+    const elementID = 'rmp';
+    const rmp = new RadiantMP(elementID);
+    rmp.one('hlsinstancecreated', () => {
+        const hlsjsInstance = rmp.getHlsJSInstance();
+        if (P2PEngineHls.isSupported()) {
+            new P2pEngineHls({
+                hlsjsInstance,
+                ...p2pConfig
+            });
+        }
+    });
     P2PEngineHls.tryRegisterServiceWorker(p2pConfig).then(() => {
         const settings = {
             licenseKey: 'Kl8lMDQ9b2kzeWNlOHoyZHM3YjgrMnNlP3JvbTVkYXNpczMwZGIwQSVfKg==',  // replace with your own license key
@@ -47,17 +58,6 @@
                 liveSyncDurationCount: 10,   // Highly recommended setting in live mode
             }
         };
-        const elementID = 'rmp';
-        const rmp = new RadiantMP(elementID);
-        rmp.one('hlsinstancecreated', () => {
-            const hlsjsInstance = rmp.getHlsJSInstance();
-            if (P2PEngineHls.isSupported()) {
-                new P2pEngineHls({
-                    hlsjsInstance,
-                    ...p2pConfig
-                });
-            }
-        });
         rmp.init(settings);
     })
 

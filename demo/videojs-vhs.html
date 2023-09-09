@@ -23,9 +23,7 @@
         // token: YOUR_TOKEN
     })
     engine.registerServiceWorker().catch(() => {}).finally(() => {
-        P2PEngineHls.tryRegisterServiceWorker().then(() => {
-            player.src('https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8')
-        })
+        player.src('https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8')
     })
 
 </script>
