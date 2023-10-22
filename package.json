@@ -1,6 +1,6 @@
 {
   "name": "swarmcloud-hls",
-  "version": "2.8.4",
+  "version": "2.8.5",
   "description": "Let your viewers become your unlimitedly scalable CDN.",
   "main": "./dist/p2p-engine.min.js",
   "types": "./dist/p2p-engine.min.d.ts",
@@ -8,7 +8,7 @@
     "dist"
   ],
   "scripts": {
-    "git-push": "git add dist && git add demo && git add package.json && git add README.md && git add Readme_zh.md && git commit -m 'add dist' && git push -u origin main",
+    "git-push": "git add dist && git add demo && git add package.json && git add README.md && git add Readme_zh.md && git commit -m 'release v2.8.5' && git push -u origin main",
     "git-pull": "git pull origin master"
   },
   "repository": {
