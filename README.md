@@ -7,7 +7,7 @@
   <a href="https://www.jsdelivr.com/package/npm/swarmcloud-hls"><img src="https://data.jsdelivr.com/v1/package/npm/swarmcloud-hls/badge" alt="jsdelivr"></a>
 </p>
 
-This SDK integrates 2 p2p streaming engines, one is [hlsjs based](https://swarmcloud.net/views/web/introduction.html), another is ServiceWorker based.
+This SDK integrates 2 p2p streaming engines, one is hlsjs based, another is ServiceWorker based.
 <br>
 As you might expect, it supports all modern browsers (including iOS Safari) and all web players (including players without hls.js built-in)!
 
@@ -22,7 +22,7 @@ Service Worker     | ✔ | ✔  | ✔  | ✔  | ✔ | ✔  |  ❌ |
 SwarmCloud         | ✔ | ✔  | ✔  |  ✔ | ✔ |  ✔ |  ❌ |
 
 ## Usage
-See [documentation](https://swarmcloud.net/en/views/hls-de/usage.html)
+See [documentation](https://docs.swarmcloud.net/web-hls)
 
 ## Related Projects
 - [android-p2p-engine](https://github.com/cdnbye/android-p2p-engine) - Live/VOD P2P Engine for Android and Android TV.
@@ -32,7 +32,7 @@ See [documentation](https://swarmcloud.net/en/views/hls-de/usage.html)
 - [dashjs-p2p-engine](https://github.com/cdnbye/dashjs-p2p-engine) - Web Video Delivery Technology with No Plugins for MPEG-dash.
 
 ## FAQ
-We have collected some [frequently asked questions](https://www.hdtvcloud.com/en/views/FAQ.html). Before reporting an issue, please search if the FAQ has the answer to your problem.
+We have collected some [frequently asked questions](https://docs.swarmcloud.net/faq). Before reporting an issue, please search if the FAQ has the answer to your problem.
 
 ## Contact Us
 Email: service@cdnbye.com
