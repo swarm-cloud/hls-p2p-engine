@@ -1,6 +1,6 @@
 **[English](README.md) | 简体中文**
 
-<h1 align="center"><a href="" target="_blank" rel="noopener noreferrer"><img width="250" src="https://www.cdnbye.com/logo.png" alt="logo"></a></h1>
+<h1 align="center"><a href="" target="_blank" rel="noopener noreferrer"><img width="250" src="https://www.swarmcloud.net/img/logo.png" alt="logo"></a></h1>
 <h4 align="center">Let your viewers become your unlimitedly scalable CDN.</h4>
 <p align="center">
   <a href="https://www.npmjs.com/package/swarmcloud-hls"><img src="https://img.shields.io/npm/v/swarmcloud-hls.svg?style=flat" alt="npm"></a>
@@ -27,7 +27,7 @@
 ## 相关项目
 - [android-p2p-engine](https://gitee.com/cdnbye/android-p2p-engine) - 安卓端原生P2P流媒体加速引擎。
 - [ios-p2p-engine](https://gitee.com/cdnbye/ios-p2p-engine) - iOS端原生P2P流媒体加速引擎。
-- [flutter-p2p-engine](https://gitee.com/cdnbye/flutter-p2p-engine) - Flutter视频/直播APP省流量&加速神器, 由 [mjl0602](https://github.com/mjl0602) 贡献。
+- [flutter-p2p-engine](https://gitee.com/cdnbye/flutter-p2p-engine) - Flutter视频/直播APP省流量&加速插件。
 - [shaka-p2p-engine](https://github.com/cdnbye/shaka-p2p-engine) - 同时支持HLS和Mpeg-Dash格式。
 - [dashjs-p2p-engine](https://github.com/cdnbye/dashjs-p2p-engine) - MPEG-dash协议的Web端P2P流媒体方案。
 

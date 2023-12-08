@@ -1,0 +1,54 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AMP using hls.js and p2p engine</title>
+  <script src="https://cdn.jsdelivr.net/npm/swarmcloud-hls@latest/dist/p2p-engine.min.js"></script>
+  <!-- Including the AMP JavaScript -->
+  <script src="https://amp.akamaized.net/hosted/1.0/player.esi?apikey&#x3D;bentley.trial&amp;format&#x3D;script&amp;version&#x3D;4.123.14"></script>
+</head>
+
+<body>
+<div id="page-container" style="height: 450px;">
+  <!-- Placing an div id on the page -->
+  <div id="amp"></div>
+
+  <script>
+    var p2pConfig = {
+      live: false,                 // set to true in live mode
+      swFile: './sw.js',
+      // trackerZone: 'hk',        // if using Hongkong tracker
+      // trackerZone: 'us',        // if using USA tracker
+      // token: YOUR_TOKEN
+      // Other p2pConfig options provided by CDNBye
+    }
+    var config = {
+      // debug: true,
+      autoplay: true,
+      autoplayPolicy: "muted",
+      media: {
+        source: [{ src: "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8", type: "application/x-mpegURL" }]
+      },
+      hls: {
+        resources: [
+          { src: "https://cdn.jsdelivr.net/npm/swarmcloud-hls@latest/dist/hls.light.min.js", debug: "https://cdn.jsdelivr.net/npm/swarmcloud-hls@latest/dist/hls.light.min.js", type: "text/javascript" },
+        ],
+        data: {
+          p2pConfig,
+        }
+      },
+    };
+
+    if (!P2pEngineHls.isMSESupported()) {
+      // use ServiceWorker based p2p engine if hls.js is not supported, need additional file sw.js
+      new P2pEngineHls.ServiceWorkerEngine(p2pConfig)
+    }
+
+    P2PEngineHls.tryRegisterServiceWorker(p2pConfig).then(() => {
+      var amp =  akamai.amp.AMP.create("amp", config);
+    })
+
+  </script>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OvenPlayer</title>
+</head>
+
+<body>
+<!-- OvenPlayer will be initialized inside this element -->
+<div id="player_id"></div>
+
+<!-- You need hls.js to play HLS. -->
+<script src="https://cdn.jsdelivr.net/npm/swarmcloud-hls@latest/dist/hls.min.js"></script>
+
+<!-- Load OvenPlayer via CDN -->
+<script src="https://cdn.jsdelivr.net/npm/ovenplayer/dist/ovenplayer.js"></script>
+
+<script>
+
+    var p2pConfig = {
+        live: false,        // set to true in live mode
+        swFile: './sw.js',
+        // trackerZone: 'hk',        // if using Hongkong tracker
+        // trackerZone: 'us',        // if using USA tracker
+        // token: YOUR_TOKEN
+        // Other p2pConfig options provided by CDNBye
+    }
+
+    if (!Hls.P2pEngine.isMSESupported()) {
+        // use ServiceWorker based p2p engine if hls.js is not supported, need additional file sw.js
+        new Hls.P2pEngine.ServiceWorkerEngine(p2pConfig)
+    }
+
+    Hls.P2pEngine.tryRegisterServiceWorker(p2pConfig).then(() => {
+        // Initialize OvenPlayer
+        const player = OvenPlayer.create('player_id', {
+            sources: [
+                {
+                    label: 'label_for_hls',
+                    // Set the type to 'hls'
+                    type: 'hls',
+                    file: 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8'
+
+                }
+            ],
+            hlsConfig: {
+                p2pConfig
+            }
+        });
+    })
+
+
+</script>
+</body>
+
+</html>

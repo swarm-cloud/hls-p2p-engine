@@ -4,7 +4,7 @@ export interface CacheLimit {
     mobile: number;
 }
 
-export interface WsSignalerAddr {
+export interface SignalConfig {
     main: string;
     backup: string;
 }
@@ -25,7 +25,7 @@ export enum TrackerZone {
 export interface P2pConfig {
     logLevel?: LogLevel | boolean;
     live?: boolean;
-    wsSignalerAddr?: string | WsSignalerAddr;
+    signalConfig?: string | SignalConfig;
     announce?: string;
     trackerZone?: TrackerZone;
     memoryCacheLimit?: CacheLimit;
