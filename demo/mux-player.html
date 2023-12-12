@@ -1,0 +1,41 @@
+<!-- P2PEngine -->
+<script src="https://cdn.jsdelivr.net/npm/swarmcloud-hls@latest/dist/p2p-engine.min.js"></script>
+<!-- Mux Player -->
+<script src="https://cdn.jsdelivr.net/npm/@mux/mux-player"></script>
+<mux-player
+        playback-id="OG6Zq19uOjRkjO3bISLWasE2M01Cx8O3o"
+></mux-player>
+<p id="version"></p>
+<h3>download info:</h3>
+<p id="info"></p>
+<script>
+    var p2pConfig = {
+        // logLevel: 'debug',
+        swFile: './sw.js',
+        live: false,        // set to true in live mode
+        getStats: function (totalP2PDownloaded, totalP2PUploaded, totalHTTPDownloaded) {
+            var total = totalHTTPDownloaded + totalP2PDownloaded;
+            document.querySelector('#info').innerText = `p2p ratio: ${Math.round(totalP2PDownloaded/total*100)}%, saved traffic: ${totalP2PDownloaded}KB, uploaded: ${totalP2PUploaded}KB`;
+        },
+        // trackerZone: 'hk',        // if using Hongkong tracker
+        // trackerZone: 'us',        // if using USA tracker
+        // token: YOUR_TOKEN
+        // Other p2pConfig options provided by CDNBye
+    }
+    const muxPlayer = document.querySelector("mux-player");
+    muxPlayer.addEventListener("loadstart", function () {
+        if (P2PEngineHls.isSupported() && muxPlayer._hls) {
+            new P2PEngineHls({
+                hlsjsInstance: muxPlayer._hls,
+                ...p2pConfig
+            });
+        }
+    });
+    if (!P2PEngineHls.isSupported()) {
+        // use ServiceWorker based p2p engine if hls.js is not supported, need additional file sw.js
+        new P2pEngineHls.ServiceWorkerEngine(p2pConfig)
+    }
+    P2PEngineHls.tryRegisterServiceWorker(p2pConfig).then(() => {
+        muxPlayer.play()
+    })
+</script>
