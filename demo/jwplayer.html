@@ -4,10 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <title>CDNBye JWPlayer Demo</title>
-    <!-- P2PEngine -->
-    <script src="https://cdn.jsdelivr.net/npm/swarmcloud-hls@latest/dist/p2p-engine.min.js"></script>
+    <!-- CDNBye Plugin -->
+    <script src="https://cdn.jsdelivr.net/npm/swarmcloud-hls@latest/dist/hls.min.js"></script>
+    <script src="//cdn.jsdelivr.net/gh/teranode/jw-provider@0.0.12/provider.hlsjs.js"></script>
+<!--    <script src="//cdn.jsdelivr.net/npm/cdnbye@latest/dist/jwplayer.provider.hls.js"></script>-->
     <!-- JW Player Builds -->
-    <script src="//ssl.p.jwpcdn.com/player/v/8.30.0/jwplayer.js"></script>
+    <script src="//ssl.p.jwpcdn.com/player/v/8.26.2/jwplayer.js"></script>
 </head>
 <body>
 <header></header>
@@ -25,34 +27,28 @@
         // Other p2pConfig options provided by CDNBye
     }
     const isSamsungBrowser = navigator.userAgent.indexOf('SamsungBrowser') > - 1;
-    if (!isSamsungBrowser && !P2pEngineHls.isMSESupported() || P2pEngineHls.getBrowser() === 'Mac-Safari') {
+    if (!isSamsungBrowser && !Hls.P2pEngine.isMSESupported() || Hls.P2pEngine.getBrowser() === 'Mac-Safari') {
         // use ServiceWorker based p2p engine, need additional file sw.js
-        new P2pEngineHls.ServiceWorkerEngine(p2pConfig)
+        new Hls.P2pEngine.ServiceWorkerEngine(p2pConfig)
     }
     jwplayer.key = "uoW6qHjBL3KNudxKVnwa3rt5LlTakbko9e6aQ6VUyKQ=";
-    var player = jwplayer('demoplayer').setup({
-        file: 'https://test-streams.mux.dev/x36xhzz/url_2/193039199_mp4_h264_aac_ld_7.m3u8',
-        width: 512,
-        height: 288,
-        hlsjsdefault: true,
-        hlsjsConfig: {
-            liveSyncDurationCount: 3,
-            // debug: true,
-            // Other hlsjsConfig options provided by hls.js
-            p2pConfig
-        },
-    });
-    player.on('ready', () => {
-        if (P2PEngineHls.isMSESupported()) {
-            new P2PEngineHls({
-                hlsjsInstance: player.hls,
-                ...p2pConfig
-            });
-        }
+    var player
+    Hls.P2pEngine.tryRegisterServiceWorker(p2pConfig).then(() => {
+        const player = jwplayer('demoplayer').setup({
+            file: 'https://test-streams.mux.dev/x36xhzz/url_2/193039199_mp4_h264_aac_ld_7.m3u8',
+            width: 512,
+            height: 288,
+            autostart: true,
+            hlsjsdefault: true,
+            hlsjsConfig: {
+                liveSyncDurationCount: 3,
+                // debug: true,
+                // Other hlsjsConfig options provided by hls.js
+                p2pConfig
+            },
+        });
     })
-    P2PEngineHls.tryRegisterServiceWorker(p2pConfig).then(() => {
-        player.play();
-    })
+
 </script>
 </body>
 </html>
