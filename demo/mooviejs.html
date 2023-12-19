@@ -26,7 +26,7 @@
         // token: YOUR_TOKEN
         // Other p2pConfig options provided by CDNBye
     }
-    if (!Hls.isMSESupported()) {
+    if (!Hls.isSupported()) {
         // use ServiceWorker based p2p engine if hls.js is not supported, need additional file sw.js
         new Hls.P2pEngine.ServiceWorkerEngine(p2pConfig)
     }
