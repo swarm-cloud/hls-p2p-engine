@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo for moovie.js</title>
+</head>
+<script src="https://cdn.jsdelivr.net/gh/BMSVieira/moovie.js@latest/js/moovie.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/BMSVieira/moovie.js@latest/css/moovie.min.css">
+<script src="https://cdn.jsdelivr.net/npm/swarmcloud-hls@latest/dist/hls.min.js"></script>
+<body>
+<div style='max-width: 800px; position: relative; margin: 0 auto; margin-top: 0px; margin-top: 64px;'>
+    <video id="example">
+        <track kind="captions" label="Portuguese" srclang="pt" src="https://raw.githubusercontent.com/BMSVieira/moovie.js/main/demo-template/subtitles/pt.vtt">
+        <track kind="captions" label="English" srclang="en" src="https://raw.githubusercontent.com/BMSVieira/moovie.js/main/demo-template/subtitles/en.vtt">
+        <track kind="captions" label="French" srclang="en" src="https://raw.githubusercontent.com/BMSVieira/moovie.js/main/demo-template/subtitles/french.srt">
+        Your browser does not support the video tag.
+    </video>
+</div>
+</body>
+<script>
+    var p2pConfig = {
+        live: false,                 // set to true in live mode
+        swFile: './sw.js',
+        // trackerZone: 'hk',        // if using Hongkong tracker
+        // trackerZone: 'us',        // if using USA tracker
+        // token: YOUR_TOKEN
+        // Other p2pConfig options provided by CDNBye
+    }
+    if (!Hls.isMSESupported()) {
+        // use ServiceWorker based p2p engine if hls.js is not supported, need additional file sw.js
+        new Hls.P2pEngine.ServiceWorkerEngine(p2pConfig)
+    }
+    var demo = new Moovie({
+        selector: "#example",
+        icons: {
+            path: "https://raw.githubusercontent.com/BMSVieira/moovie.js/main/icons/"
+        }
+    });
+    var video = demo.video;
+    Hls.P2pEngine.tryRegisterServiceWorker(p2pConfig).then(() => {
+        if (Hls.isSupported()) {
+            var hls = new Hls({
+                p2pConfig
+            });
+            hls.loadSource('https://content.jwplatform.com/manifests/vM7nH0Kl.m3u8');
+            hls.attachMedia(video);
+        }
+    })
+
+</script>
+</html>
