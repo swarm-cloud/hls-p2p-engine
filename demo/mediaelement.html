@@ -5,7 +5,7 @@
     <title>CDNBye MediaElement Demo</title>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/mediaelement@4.2.16/build/mediaelementplayer.min.css">
     <script src="https://cdn.jsdelivr.net/npm/swarmcloud-hls@latest/dist/hls.min.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/mediaelement@4.2.16/build/mediaelement-and-player.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/mediaelement@7.0.2/build/mediaelement-and-player.min.js"></script>
 </head>
 <body>
 <video id="player"
@@ -37,7 +37,7 @@
     }
     Hls.P2pEngine.tryRegisterServiceWorker(p2pConfig).then(() => {
         var player = new MediaElementPlayer('player', {
-            renderers: ['native_hls'],
+            renderers: [ Hls.P2pEngine.isMSESupported() ? 'native_hls' : 'html5'],
             stretching: 'responsive',
             hls: {
                 debug: false,
@@ -45,7 +45,7 @@
                 p2pConfig
             },
             success: function (me) {
-                me.play();
+                // me.play();
             }
         });
     })
