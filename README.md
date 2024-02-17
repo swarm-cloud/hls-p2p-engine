@@ -17,7 +17,7 @@ WebRTC has already been incorporated into the HTML5 standard and it is broadly d
 Compatibility|Chrome | Firefox | macOS Safari | Opera | Edge | iOS Safari | IE |
 :-: | :-: | :-: | :-: | :-: | :-:| :-:| :-:
 WebRTC Datachannel | ✔ | ✔  | ✔  |  ✔ | ✔ | ✔  |  ❌ |
-MSE                | ✔  | ✔  | ✔  | ✔ | ✔ | ❌ |  ❌ |
+MSE(MMS)           | ✔  | ✔  | ✔  | ✔ | ✔ | ✔  |  ❌ |
 Service Worker     | ✔ | ✔  | ✔  | ✔  | ✔ | ✔  |  ❌ |
 SwarmCloud         | ✔ | ✔  | ✔  |  ✔ | ✔ |  ✔ |  ❌ |
 

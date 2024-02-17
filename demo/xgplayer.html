@@ -9,15 +9,15 @@
         body {display:flex;}
         #mse {flex:auto;}
     </style>
-    <link rel="stylesheet" href="https://unpkg.byted-static.com/xgplayer/3.0.1/dist/index.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xgplayer@3.0.12/dist/index.min.css">
     <script type="text/javascript">
         window.addEventListener('resize',function(){document.getElementById('mse').style.height=window.innerHeight+'px';});
     </script>
 </head>
 <body>
 <div id="mse"></div>
-<script src="https://unpkg.byted-static.com/xgplayer/3.0.1/dist/index.min.js" charset="utf-8"></script>
-<script src="//unpkg.byted-static.com/xgplayer-hls.js/3.0.0-alpha.1/dist/index.min.js" charset="utf-8"></script>
+<script src="//cdn.jsdelivr.net/npm/xgplayer@3.0.12/dist/index.min.js" charset="utf-8"></script>
+<script src="//cdn.jsdelivr.net/npm/xgplayer-hls.js@3.0.12/dist/index.min.js" charset="utf-8"></script>
 <script src="//cdn.jsdelivr.net/npm/swarmcloud-hls@latest/dist/p2p-engine.min.js"></script>
 <script type="text/javascript">
     var p2pConfig = {
@@ -42,7 +42,7 @@
                 hlsOpts: {
                     maxBufferSize: 0,       // Highly recommended setting in live mode
                     maxBufferLength: 10,     // Highly recommended setting in live mode
-                    liveSyncDurationCount: 10,   // Highly recommended setting in live mode
+                    liveSyncDurationCount: 6,   // Highly recommended setting in live mode
                 }
             }
         });

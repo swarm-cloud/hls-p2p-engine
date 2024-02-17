@@ -17,7 +17,7 @@
  兼容性|Chrome | Firefox | macOS Safari| Opera | Edge | iOS Safari | IE |
 :-: | :-: | :-: | :-: | :-: | :-:| :-:| :-:
  WebRTC Datachannel | ✔ | ✔  | ✔  |  ✔ | ✔ | ✔  |  ❌ |
- MSE                | ✔  | ✔  | ✔  | ✔ | ✔ | ❌ |  ❌ |
+ MSE(MMS)           | ✔  | ✔  | ✔  | ✔ | ✔ | ✔  |  ❌ |
  Service Worker     | ✔ | ✔  | ✔  | ✔  | ✔ | ✔  |  ❌ |
  SwarmCloud         | ✔ | ✔  | ✔  |  ✔ | ✔ |  ✔ |  ❌ |
 
