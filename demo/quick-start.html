@@ -13,7 +13,7 @@
         // token: YOUR_TOKEN
         // Other p2pConfig options provided by CDNBye
     }
-    document.querySelector('#version').innerText = `hls.js version: ${Hls.version}  cdnbye version: ${Hls.engineVersion}`;
+    document.querySelector('#version').innerText = `hls.js version: ${Hls.version} plugin version: ${Hls.engineVersion}`;
     var video = document.getElementById('video');
     var source = 'https://test-streams.mux.dev/x36xhzz/url_2/193039199_mp4_h264_aac_ld_7.m3u8';
     if(Hls.isSupported()) {
@@ -27,7 +27,7 @@
         });
         hls.p2pEngine.on('stats', function ({totalHTTPDownloaded, totalP2PDownloaded, totalP2PUploaded}) {
             var total = totalHTTPDownloaded + totalP2PDownloaded;
-            document.querySelector('#info').innerText = `p2p ratio: ${Math.round(totalP2PDownloaded/total*100)}%, saved traffic: ${totalP2PDownloaded}KB, uploaded: ${totalP2PUploaded}KB`;
+            document.querySelector('#info').innerText = `engine name: ${hls.p2pEngine.engineName} p2p ratio: ${Math.round(totalP2PDownloaded/total*100)}%, saved traffic: ${totalP2PDownloaded}KB, uploaded: ${totalP2PUploaded}KB`;
         });
     }
     // This is using the built-in support of the plain video element, without using hls.js.
@@ -35,7 +35,7 @@
         var engine = new Hls.P2pEngine(p2pConfig);
         engine.on('stats', function ({totalHTTPDownloaded, totalP2PDownloaded, totalP2PUploaded}) {
             var total = totalHTTPDownloaded + totalP2PDownloaded;
-            document.querySelector('#info').innerText = `p2p ratio: ${Math.round(totalP2PDownloaded/total*100)}%, saved traffic: ${totalP2PDownloaded}KB, uploaded: ${totalP2PUploaded}KB`;
+            document.querySelector('#info').innerText = `engine name: ${engine.engineName} p2p ratio: ${Math.round(totalP2PDownloaded/total*100)}%, saved traffic: ${totalP2PDownloaded}KB, uploaded: ${totalP2PUploaded}KB`;
         });
         engine.registerServiceWorker().catch(() => {}).finally(() => {
             // native video playback here
