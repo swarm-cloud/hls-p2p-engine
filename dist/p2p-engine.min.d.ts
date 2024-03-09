@@ -16,7 +16,6 @@ export enum LogLevel {
 }
 
 export enum TrackerZone {
-    China = 'cn',
     Europe = 'eu',
     HongKong = 'hk',
     USA = 'us',
