@@ -4,7 +4,7 @@
 
     <title>JWPlayer with hls.js engine and P2P demo</title>
 
-    <script src="https://cdn.jsdelivr.net/npm/swarmcloud-jwplayer-hlsjs@0.1.1/dist/jwplayer.hlsjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swarmcloud-jwplayer-hlsjs@latest/dist/jwplayer.hlsjs.min.js"></script>
     <script src="//ssl.p.jwpcdn.com/player/v/8.30.0/jwplayer.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swarmcloud-hls@latest/dist/hls.min.js"></script>
     <style>
@@ -32,7 +32,7 @@
         // Other p2pConfig options provided by CDNBye
     }
     const isSamsungBrowser = navigator.userAgent.indexOf('SamsungBrowser') > - 1;
-    if (!isSamsungBrowser && !Hls.P2pEngine.isMSESupported() || Hls.P2pEngine.getBrowser() === 'Mac-Safari') {
+    if (!isSamsungBrowser && !Hls.P2pEngine.isMSESupported() || Hls.P2pEngine.getBrowser() === 'Mac-Safari' || Hls.P2pEngine.getBrowser() === 'iPhone-Safari') {
         // use ServiceWorker based p2p engine, need additional file sw.js
         new Hls.P2pEngine.ServiceWorkerEngine(p2pConfig)
     }
