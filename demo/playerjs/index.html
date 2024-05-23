@@ -5,13 +5,8 @@
     var p2pConfig = {
         logLevel: 'debug',
         live: false,        // set to true in live mode
-        swFile: './sw.js',
         // trackerZone: 'hk',        // if using Hongkong tracker
         // trackerZone: 'us',        // if using USA tracker
-    }
-    if (Hls.P2pEngine.getBrowser() === 'iPhone-Safari') {
-        // use ServiceWorker based p2p engine if hls.js is not supported, need additional file sw.js
-        new Hls.P2pEngine.ServiceWorkerEngine(p2pConfig)
     }
     Hls.P2pEngine.tryRegisterServiceWorker(p2pConfig).then(() => {
         var player = new Playerjs({
