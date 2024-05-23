@@ -9,11 +9,11 @@
         // trackerZone: 'hk',        // if using Hongkong tracker
         // trackerZone: 'us',        // if using USA tracker
     }
-    if (!Hls.P2pEngine.isMSESupported()) {
+    if (Hls.P2pEngine.getBrowser() === 'iPhone-Safari') {
         // use ServiceWorker based p2p engine if hls.js is not supported, need additional file sw.js
         new Hls.P2pEngine.ServiceWorkerEngine(p2pConfig)
     }
-    P2PEngineHls.tryRegisterServiceWorker(p2pConfig).then(() => {
+    Hls.P2pEngine.tryRegisterServiceWorker(p2pConfig).then(() => {
         var player = new Playerjs({
             id:"player",
             file:"https://test-streams.mux.dev/x36xhzz/url_2/193039199_mp4_h264_aac_ld_7.m3u8",
