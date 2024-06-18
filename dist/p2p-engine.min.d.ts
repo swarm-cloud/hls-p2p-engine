@@ -47,6 +47,9 @@ export interface P2pConfig {
     showSlogan?: boolean;
     trickleICE?: boolean;
     geoIpPreflight?: boolean;
+    startFromSegmentOffset?: number;
+    ICEPreflight?: boolean;
+    prefetchOnly?: boolean;
     getStats?: (totalP2PDownloaded: number, totalP2PUploaded: number, totalHTTPDownloaded: number, p2pDownloadSpeed: number)=>void;
     getPeerId?: (peerId: string)=>void;
     getPeersInfo?: (peers: string[])=>void;
