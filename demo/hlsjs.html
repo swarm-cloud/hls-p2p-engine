@@ -29,6 +29,12 @@
         p2pConfig.hlsjsInstance = hls;
         hls.loadSource(source);
         hls.attachMedia(video);
+        // for airplay
+        var airPlaySrc = document.createElement("source");
+        airPlaySrc.src = source;
+        video.appendChild(airPlaySrc);
+        video.disableRemotePlayback = false;
+
         hls.on(Hls.Events.MANIFEST_PARSED,function(event, data) {
             video.play();
         });

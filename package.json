@@ -8,7 +8,7 @@
     "dist"
   ],
   "scripts": {
-    "git-push": "git add demo && git add package.json && git add README.md && git add Readme_zh.md && git commit -m 'release v2.11.2' && git push -u origin main",
+    "git-push": "git add demo && git add package.json && git add README.md && git add Readme_zh.md && git commit -m 'add airplay for demo' && git push -u origin main",
     "git-pull": "git pull origin master"
   },
   "repository": {
