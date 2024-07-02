@@ -17,6 +17,7 @@
 <h3>download info:</h3>
 <p id="info"></p>
 <script>
+    var source = 'https://test-streams.mux.dev/x36xhzz/url_2/193039199_mp4_h264_aac_ld_7.m3u8';
     var p2pConfig = {
         logLevel: 'debug',
         swFile: './sw.js',
@@ -33,7 +34,7 @@
         autoplay: true,
         sources:[
             {
-                src: 'https://test-streams.mux.dev/x36xhzz/url_2/193039199_mp4_h264_aac_ld_7.m3u8',
+                src: source,
             },
         ],
         html5: {
@@ -53,6 +54,11 @@
                 ...p2pConfig
             });
         }
+        var video = videojsPlayer.el_.firstChild
+        var airPlaySrc = document.createElement("source");
+        airPlaySrc.src = source;
+        video.appendChild(airPlaySrc);
+        video.disableRemotePlayback = false;
     }
     if (videojs.Html5Hlsjs) {
         videojs.Html5Hlsjs.addHook('beforeinitialize', initP2pEngine);
