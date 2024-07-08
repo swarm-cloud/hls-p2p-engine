@@ -2,7 +2,7 @@
 <head>
   <meta charset="UTF-8">
   <title>AMP using hls.js and p2p engine</title>
-  <script src="https://cdn.jsdelivr.net/npm/swarmcloud-hls@latest/dist/p2p-engine.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@swarmcloud/hls/p2p-engine.min.js"></script>
   <!-- Including the AMP JavaScript -->
   <script src="https://amp.akamaized.net/hosted/1.0/player.esi?apikey&#x3D;bentley.trial&amp;format&#x3D;script&amp;version&#x3D;4.123.14"></script>
 </head>
@@ -30,7 +30,7 @@
       },
       hls: {
         resources: [
-          { src: "https://cdn.jsdelivr.net/npm/swarmcloud-hls@latest/dist/hls.light.min.js", debug: "https://cdn.jsdelivr.net/npm/swarmcloud-hls@latest/dist/hls.light.min.js", type: "text/javascript" },
+          { src: "https://cdn.jsdelivr.net/npm/@swarmcloud/hls/hls.light.min.js", debug: "https://cdn.jsdelivr.net/npm/@swarmcloud/hls/hls.light.min.js", type: "text/javascript" },
         ],
         data: {
           p2pConfig,

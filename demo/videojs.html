@@ -9,7 +9,7 @@
     <script src="//cdn.jsdelivr.net/npm/videojs-hls-quality-selector@1.1.1/dist/videojs-hls-quality-selector.min.js"></script>
     <!-- p2p-plugin -->
     <script src="//cdn.jsdelivr.net/npm/cdnbye@latest/dist/videojs-hlsjs-plugin.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swarmcloud-hls@latest/dist/p2p-engine.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@swarmcloud/hls/p2p-engine.min.js"></script>
 </head>
 <body>
 <video id=video width=600 height=300 class="video-js vjs-default-skin" controls>
@@ -17,7 +17,6 @@
 <h3>download info:</h3>
 <p id="info"></p>
 <script>
-    var source = 'https://test-streams.mux.dev/x36xhzz/url_2/193039199_mp4_h264_aac_ld_7.m3u8';
     var p2pConfig = {
         logLevel: 'debug',
         swFile: './sw.js',
@@ -34,7 +33,7 @@
         autoplay: true,
         sources:[
             {
-                src: source,
+                src: 'https://test-streams.mux.dev/x36xhzz/url_2/193039199_mp4_h264_aac_ld_7.m3u8',
             },
         ],
         html5: {
@@ -54,11 +53,6 @@
                 ...p2pConfig
             });
         }
-        var video = videojsPlayer.el_.firstChild
-        var airPlaySrc = document.createElement("source");
-        airPlaySrc.src = source;
-        video.appendChild(airPlaySrc);
-        video.disableRemotePlayback = false;
     }
     if (videojs.Html5Hlsjs) {
         videojs.Html5Hlsjs.addHook('beforeinitialize', initP2pEngine);
