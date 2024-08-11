@@ -53,11 +53,7 @@
             width: 640,
             height: 360,
             forceHlsJSOnIpadOS: true,
-            hlsJSCustomConfig: {
-                maxBufferSize: 0,       // Highly recommended setting in live mode
-                maxBufferLength: 15,     // Highly recommended setting in live mode
-                liveSyncDurationCount: 6,   // Highly recommended setting in live mode
-            }
+            hlsJSCustomConfig: {}
         };
         rmp.init(settings);
     })

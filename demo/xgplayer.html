@@ -39,11 +39,7 @@
             width: window.innerWidth,
             plugins: P2pEngineHls.isMSESupported() ? [window.HlsJsPlugin] : [],
             hlsJsPlugin: {
-                hlsOpts: {
-                    maxBufferSize: 0,       // Highly recommended setting in live mode
-                    maxBufferLength: 10,     // Highly recommended setting in live mode
-                    liveSyncDurationCount: 6,   // Highly recommended setting in live mode
-                }
+                hlsOpts: {}
             }
         });
         const events = window.Player.Events;
