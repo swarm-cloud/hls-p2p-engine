@@ -2,33 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>CDNBye Clappr Demo</title>
+    <title>Clappr Demo</title>
     <!-- Clappr Builds -->
-    <script src="//cdn.jsdelivr.net/npm/@clappr/player@0.6.0/dist/clappr.min.js"></script>
-    <script type="text/javascript" src="//cdn.jsdelivr.net/gh/clappr/clappr-level-selector-plugin@0.3.0/dist/level-selector.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/clappr@latest/dist/clappr.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/gh/clappr/clappr-level-selector-plugin@latest/dist/level-selector.min.js"></script>
     <!-- P2PEngine -->
     <script src="https://cdn.jsdelivr.net/npm/@swarmcloud/hls/p2p-engine.min.js"></script>
-<!--    <script src="../../../test/hls-next/p2p-engine.js"></script>-->
-    <!-- P2P Clappr Plugin -->
-    <script src="https://cdn.jsdelivr.net/npm/@swarmcloud/hls/clappr-p2p-plugin.min.js"></script>
 </head>
 <body>
 <div id="player"></div>
 <h3>download info:</h3>
 <p id="info"></p>
 <script>
-    const isHlsjsSupported = Clappr.HLS.HLSJS.isSupported
-    Clappr.HLS.HLSJS.isSupported = function() {
-        if (document.createElement('video').canPlayType('application/vnd.apple.mpegurl')
-            && /Safari/.test(navigator.userAgent)
-            && !/Chrome/.test(navigator.userAgent)) {
-            return false
-        }
-        return isHlsjsSupported()
-    }
     var p2pConfig = {
         // logLevel: 'debug',
-        swFile: './sw.js',
         live: false,        // set to true in live mode
         getStats: function (totalP2PDownloaded, totalP2PUploaded, totalHTTPDownloaded) {
             var total = totalHTTPDownloaded + totalP2PDownloaded;
@@ -39,26 +26,21 @@
         // token: YOUR_TOKEN
         // Other p2pConfig options provided by CDNBye
     }
-    if (!Clappr.HLS.HLSJS.isSupported()) {
-        // use ServiceWorker based p2p engine if hls.js is not supported, need additional file sw.js
-        new P2pEngineHls.ServiceWorkerEngine(p2pConfig)
-    }
-    P2PEngineHls.tryRegisterServiceWorker(p2pConfig).then(() => {
-        var player = new Clappr.Player(
-            {
-                source: "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8",
-                parentId: "#player",
-                autoPlay: true,
-                plugins: [LevelSelector, SwarmCloudClapprPlugin],
-                playback: {
-                    hlsjsConfig: {
-                        // Other hlsjsConfig options provided by hls.js
-                        p2pConfig
-                    }
+    var player = new Clappr.Player(
+        {
+            source: "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8",
+            parentId: "#player",
+            autoPlay: true,
+            plugins: [LevelSelector],
+            playback: {
+                hlsjsConfig: {
+                    // Other hlsjsConfig options provided by hls.js
+                    p2pConfig
                 }
-            });
-    })
-
+            }
+        });
+    p2pConfig.hlsjsInstance = player.core.getCurrentPlayback()?._hls;
+    var engine = new P2PEngineHls(p2pConfig);
 </script>
 </body>
 </html>
