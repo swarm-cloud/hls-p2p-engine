@@ -25,6 +25,7 @@
         // for airplay
         var airPlaySrc = document.createElement("source");
         airPlaySrc.src = source;
+        airPlaySrc.type = 'application/x-mpegURL';
         video.appendChild(airPlaySrc);
         video.disableRemotePlayback = false;
 

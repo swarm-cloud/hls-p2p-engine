@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Clappr Demo</title>
     <!-- Clappr Builds -->
-    <script src="//cdn.jsdelivr.net/npm/@clappr/player@~0/dist/clappr.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/@clappr/player@0.8/dist/clappr.min.js"></script>
     <!-- P2PEngine -->
     <script src="//cdn.jsdelivr.net/npm/@swarmcloud/hls/p2p-engine.min.js"></script>
 </head>
@@ -16,7 +16,7 @@
     var p2pConfig = {
         // logLevel: 'debug',
         swFile: './sw.js',
-        live: false,        // set to true in live mode
+        live: true,
         getStats: function (totalP2PDownloaded, totalP2PUploaded, totalHTTPDownloaded) {
             var total = totalHTTPDownloaded + totalP2PDownloaded;
             document.querySelector('#info').innerText = `p2p ratio: ${Math.round(totalP2PDownloaded/total*100)}%, saved traffic: ${totalP2PDownloaded}KB, uploaded: ${totalP2PUploaded}KB`;
@@ -31,17 +31,10 @@
             parentId: "#player",
             autoPlay: true,
             plugins: [],
-            playback: {
-                hlsjsConfig: {
-                    maxBufferSize: 0,       // Highly recommended setting in live mode
-                    maxBufferLength: 12,     // Highly recommended setting in live mode
-                    liveSyncDurationCount: 8,   // Highly recommended setting in live mode
-                }
-            },
         });
 
     P2PEngineHls.tryRegisterServiceWorker(p2pConfig).then(() => {
-        player.load({source: "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"});
+        player.load({source: "https://cph-p2p-msl.akamaized.net/hls/live/2000341/test/level_0.m3u8"});
         p2pConfig.hlsjsInstance = player.core.getCurrentPlayback()?._hls;
         var engine = new P2PEngineHls(p2pConfig);
     })
