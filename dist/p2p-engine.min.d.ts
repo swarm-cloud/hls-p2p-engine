@@ -19,6 +19,7 @@ export enum TrackerZone {
     Europe = 'eu',
     HongKong = 'hk',
     USA = 'us',
+    CN = 'cn',
 }
 
 export interface P2pConfig {
