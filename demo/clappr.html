@@ -5,14 +5,13 @@
     <title>Clappr Demo</title>
     <!-- Clappr Builds -->
     <script src="//cdn.jsdelivr.net/npm/@clappr/player@0.8/dist/clappr.min.js"></script>
-    <!-- P2PEngine -->
-    <script src="//cdn.jsdelivr.net/npm/@swarmcloud/hls/p2p-engine.min.js"></script>
 </head>
 <body>
 <div id="player"></div>
 <h3>download info:</h3>
 <p id="info"></p>
-<script>
+<script type="module">
+    import P2PEngineHls from "https://cdn.jsdelivr.net/npm/@swarmcloud/hls/p2p-engine.es.min.js";
     var p2pConfig = {
         // logLevel: 'debug',
         swFile: './sw.js',

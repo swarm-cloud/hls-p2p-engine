@@ -1,12 +1,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-
     <title>JWPlayer with hls.js engine and P2P demo</title>
-
-    <script src="https://cdn.jsdelivr.net/npm/swarmcloud-jwplayer-hlsjs@latest/dist/jwplayer.hlsjs.min.js"></script>
     <script src="//ssl.p.jwpcdn.com/player/v/8.34.0/jwplayer.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@swarmcloud/hls/hls.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/@swarmcloud/hls/sw-p2p-engine.min.js"></script>
     <style>
         #wrapper {
             width: 720px;
@@ -30,14 +27,10 @@
         // trackerZone: 'us',        // if using USA tracker
         // token: YOUR_TOKEN
         // Other p2pConfig options provided by CDNBye
-    }
-    const isSamsungBrowser = navigator.userAgent.indexOf('SamsungBrowser') > - 1;
-    if (!isSamsungBrowser && !Hls.P2pEngine.isMSESupported() || Hls.P2pEngine.getBrowser() === 'iPhone-Safari') {
-        // use ServiceWorker based p2p engine, need additional file sw.js
-        new Hls.P2pEngine.ServiceWorkerEngine(p2pConfig)
-    }
+    };
+    new P2PEngineHls.ServiceWorkerEngine(p2pConfig);
     var player = jwplayer("player");
-    Hls.P2pEngine.tryRegisterServiceWorker(p2pConfig).then(() => {
+    P2PEngineHls.tryRegisterServiceWorker(p2pConfig).then(() => {
         player.setup({
             file: "https://test-streams.mux.dev/x36xhzz/url_2/193039199_mp4_h264_aac_ld_7.m3u8",
             width: 512,
@@ -51,8 +44,7 @@
                 p2pConfig
             },
         });
-    })
-    jwplayer_hls_provider.attach();
+    });
 </script>
 </body>
 </html>
