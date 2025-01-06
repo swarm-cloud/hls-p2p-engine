@@ -62,9 +62,6 @@ export interface P2pConfig {
     useDiskCache?: boolean;
     strictSegmentId?: boolean;
     httpStreamEnabled?: boolean;
-    waitForPeer?: boolean;
-    waitForPeerTimeout?: number;
-    sourceUrl?: string;
 }
 
 export declare class P2pEngineHls {
