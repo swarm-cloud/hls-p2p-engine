@@ -1,0 +1,7 @@
+.DS_Store
+.idea
+/node_modules
+/dist/.DS_Store
+/dist/.idea
+/dist/package.json
+dist-es5
