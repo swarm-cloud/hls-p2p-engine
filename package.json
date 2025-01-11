@@ -1,6 +1,6 @@
 {
   "name": "swarmcloud-hls",
-  "version": "2.13.6",
+  "version": "2.13.13",
   "description": "Let your viewers become your unlimitedly scalable CDN.",
   "main": "./dist/p2p-engine.min.js",
   "module": "./dist/p2p-engine.es.min.js",

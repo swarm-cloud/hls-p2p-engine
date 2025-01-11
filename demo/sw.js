@@ -1,4 +1,4 @@
-self.importScripts('https://cdn.jsdelivr.net/npm/@swarmcloud/hls@2.13.0/hls-proxy.js')
+self.importScripts('https://cdn.jsdelivr.net/npm/@swarmcloud/hls/hls-proxy.js')
 
 // uncomment code below to customize HlsProxy config, see https://www.swarmcloud.net/web-hls/API#hlsproxy-api
 // new HlsProxy({
