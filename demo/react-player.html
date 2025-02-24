@@ -1,0 +1,29 @@
+<div id='container'></div>
+<script src='https://cdn.jsdelivr.net/npm/react-player/dist/ReactPlayer.standalone.js'></script>
+<script src="https://cdn.jsdelivr.net/npm/@swarmcloud/hls/hls.min.js"></script>
+<script>
+    const container = document.getElementById('container')
+    const url = 'https://cph-p2p-msl.akamaized.net/hls/live/2000341/test/level_0.m3u8'
+
+    renderReactPlayer(container, {
+        url,
+        controls: true,
+        muted: true,
+        playing: true,
+        config: {
+            file: {
+                forceSafariHLS: true,
+                hlsOptions: {
+                    p2pConfig: {
+                        live: false,        // set to true in live mode
+                        // trackerZone: 'hk',        // if using Hongkong tracker
+                        // trackerZone: 'us',        // if using USA tracker
+                        // token: YOUR_TOKEN
+                        // Other p2pConfig options provided by CDNBye
+                    }
+                }
+            }
+        }
+    })
+
+</script>
