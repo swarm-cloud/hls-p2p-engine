@@ -22,7 +22,7 @@ Service Worker     | ✔ | ✔  | ✔  | ✔  | ✔ | ✔  |  ❌ |
 SwarmCloud         | ✔ | ✔  | ✔  |  ✔ | ✔ |  ✔ |  ❌ |
 
 ## Usage
-See [documentation](https://docs.swarmcloud.net/web-hls)
+See [documentation](https://docs.swarmcloud.net/web-hls?utm_source=github)
 
 ## Related Projects
 - [android-p2p-engine](https://github.com/cdnbye/android-p2p-engine) - Live/VOD P2P Engine for Android and Android TV.
@@ -32,7 +32,7 @@ See [documentation](https://docs.swarmcloud.net/web-hls)
 - [dashjs-p2p-engine](https://github.com/cdnbye/dashjs-p2p-engine) - Web Video Delivery Technology with No Plugins for MPEG-dash.
 
 ## FAQ
-We have collected some [frequently asked questions](https://docs.swarmcloud.net/faq). Before reporting an issue, please search if the FAQ has the answer to your problem.
+We have collected some [frequently asked questions](https://docs.swarmcloud.net/faq?utm_source=github). Before reporting an issue, please search if the FAQ has the answer to your problem.
 
 ## Contact Us
 Email: service@cdnbye.com
