@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+    <title>TODO supply a title</title>
+    <!-- Include with Swarm Cloud (CDNBye) library in your <head> -->
+    <script src="https://cdn.jsdelivr.net/npm/swarmcloud-hls@latest/dist/p2p-engine.min.js"></script>
+    <!-- Include Radiant Media Player HLS-optimized library in your <body> or <head> -->
+    <script src="https://cdn.radiantmediatechs.com/rmp/10.7.8/js/rmp-hlsjs.min.js"></script>
+</head>
+<body>
+<!-- Player container element -->
+<div id="rmp"></div>
+<p id="version"></p>
+<h3>download info:</h3>
+<p id="info"></p>
+<p id="peers"></p>
+<script>
+    // Swarm Cloud configuration options
+    var p2pConfig = {
+        // logLevel: 'debug',
+        live: false,        // set to true in live mode
+        // trackerZone: 'hk',        // if using Hongkong tracker
+        // trackerZone: 'us',        // if using USA tracker
+        // token: YOUR_TOKEN
+        // Other p2pConfig options provided by CDNBye
+    }
+    // Streaming source - HLS in this example
+    const src = {
+        hls: 'https://test-streams.mux.dev/x36xhzz/url_2/193039199_mp4_h264_aac_ld_7.m3u8'
+    };
+    // Player settings
+    const settings = {
+        licenseKey: 'Kl8lMDQ9b2kzeWNlOHoyZHM3YjgrMnNlP3JvbTVkYXNpczMwZGIwQSVfKg==',  // replace with your own license key
+        src,
+        width: 640,
+        height: 360,
+        // To enable CDNBye support for Apple devices
+        forceHlsJSOnAppleDevices: true,
+        autoplay: true,
+        // for live streaming add the following configuration
+        // hlsJSCustomConfig: {
+        // maxBufferSize: 0,
+        // maxBufferLength: 15,
+        // liveSyncDurationCount: 10
+        //},
+        contentMetadata: {
+            poster: [
+                'https://your-poster-url.jpg'
+            ]
+        }
+    };
+    const rmp = new RadiantMP('rmp');
+    // We wait for hls.js to be ready then we start Swarm Cloud engine
+    rmp.one('hlsjsinstancecreated', () => {
+        document.querySelector('#version').innerText = `Radiant Media Player version ${rmp.playerVersion} - hls.js version: ${Hls.version} - p2p version: ${P2PEngineHls.version}`;
+        const hlsJSInstance = rmp.hlsJSInstance;
+        p2pConfig.hlsjsInstance = hlsJSInstance;
+        const engine = new P2pEngineHls(p2pConfig);
+        engine.on('stats', function ({ totalHTTPDownloaded = 0, totalP2PDownloaded = 0, totalP2PUploaded = 0 }) {
+            const total = totalHTTPDownloaded + totalP2PDownloaded;
+            document.querySelector('#info').innerText = `p2p ratio: ${Math.round(totalP2PDownloaded / total * 100)}%, saved traffic: ${totalP2PDownloaded}KB`;
+        });
+        engine.on('peers', function (peers) {
+            document.querySelector('#peers').innerText = `peers: ${peers.length}`;
+        });
+    });
+    async function initRmpPlayer() {
+        try {
+            await rmp.init(settings);
+        } catch (error) {
+            console.error('Radiant Media Player failed to initialize', error);
+        }
+    }
+    initRmpPlayer();
+</script>
+</body>
+</html>
